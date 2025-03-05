@@ -1,11 +1,11 @@
 import { createAppSlice } from "@/store/createAppSlice";
 
 export interface IMainConfiguratorState {
-    wordMode: "word" | "quotes" | "zen";
+    textMode: "word" | "quotes" | "zen";
 }
 
 const initialState: IMainConfiguratorState = {
-    wordMode: "word",
+    textMode: "word",
 }
 
 export const mainConfiguratorSlice = createAppSlice({
@@ -13,11 +13,11 @@ export const mainConfiguratorSlice = createAppSlice({
     initialState,
     reducers: {
         setWordMode: (state, action) => {
-            state.wordMode = action.payload;
+            state.textMode = action.payload;
         },
     },
     selectors: {
-        selectWordMode: (state) => state.wordMode,
+        selectWordMode: (state) => state.textMode,
     }
 })
 
