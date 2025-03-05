@@ -1,0 +1,76 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	// font-family: "JetBrains Mono Variable", monospace;
+	color: white;
+	// background: #141414;
+	overflow: hidden;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	#root {
+		height: 100%;
+		overflow: hidden;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	h1 {
+		font-size: 24px;
+		font-weight: 600;
+		margin: 0;
+	}
+	h2 {
+		font-size: 20px;
+		font-weight: 600;
+		margin: 0;
+	}
+	h3 {
+		font-size: 14px;
+		font-weight: 600;
+		margin: 0;
+	}
+}
+
+.styled-notifications-success {
+	background-color: rgba(85, 85, 85, 0.124);
+	backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.124);
+	box-shadow: 0 0px 25px rgba(7, 188, 13, 0.277);
+	color: #d0d0d2;
+
+	.Toastify__progress-bar--success {
+		background: rgba(7, 188, 12, 1);
+		height: 2px;
+	}
+}
+
+.styled-notifications-error {
+	background-color: rgba(85, 85, 85, 0.124);
+	backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.124);
+	box-shadow: 0 0px 25px rgba(188, 31, 7, 0.277);
+	color: #d0d0d2;
+	.Toastify__progress-bar--error {
+		background: rgba(231, 77, 60, 0.742);
+		height: 2px;
+	}
+}
+
+.centered-class {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 12px;
+}
