@@ -11,6 +11,8 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
+		"@gravity-ui/uikit": "^7.5.0",
+		"@reduxjs/toolkit": "^2.6.0",
 		"path": "^0.12.7",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",

@@ -20,6 +20,7 @@
 			"@/*": ["src/*"],
 			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],
+			"@features/*": ["src/features/*"],
 			"@hooks/*": ["src/hooks/*"],
 			"@layout/*": ["src/layout/*"],
 			"@pages/*": ["src/pages/*"],
