@@ -20,10 +20,12 @@
 			"@/*": ["src/*"],
 			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],
+			"@hooks/*": ["src/hooks/*"],
 			"@layout/*": ["src/layout/*"],
 			"@pages/*": ["src/pages/*"],
 			"@store/*": ["src/store/*"],
-			"@styles/*": ["src/styles/*"]
+			"@styles/*": ["src/styles/*"],
+			"@utils/*": ["src/utils/*"]
 		},
 
 		/* Linting */
