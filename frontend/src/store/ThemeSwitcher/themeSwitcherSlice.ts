@@ -1,4 +1,4 @@
-import { IThemeSwitcherState } from "@/types"
+import { IThemeSwitcherState } from "@/types/features"
 
 import { createAppSlice } from "@/store/createAppSlice"
 

@@ -1,4 +1,4 @@
-import { IMainConfiguratorState } from "@/types"
+import { IMainConfiguratorState } from "@/types/features"
 
 import { createAppSlice } from "@/store/createAppSlice"
 

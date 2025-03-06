@@ -11,6 +11,7 @@
 	],
 	"importOrder": [
 		"^react$",
+		"^@gravity-ui/icons$",
 		"<THIRD_PARTY_MODULES>",
 		"^@/assets",
 		"^@/styles",

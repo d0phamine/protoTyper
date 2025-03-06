@@ -1,0 +1,43 @@
+@use "@/styles/functions.scss" as *;
+
+.sub-button {
+	display: flex;
+	flex-direction: row;
+	gap: 0.25rem;
+	align-items: center;
+	padding: 0.25em 0.5em;
+	transition: 1s;
+
+	&__title {
+		p {
+			line-height: 1;
+			font-weight: 400;
+			color: var(--sub-color);
+		}
+	}
+
+	&__icon {
+		display: flex;
+		align-items: center;
+		svg {
+			height: rem(12);
+			width: rem(12);
+			color: var(--sub-color);
+			line-height: 1;
+		}
+	}
+}
+
+.sub-button:hover {
+	cursor: pointer;
+	transition: 1s;
+
+	& .sub-button__title p {
+		color: var(--text-color);
+	}
+
+	& .sub-button__icon svg {
+		color: var(--text-color);
+	}
+}
+

@@ -1,19 +1,139 @@
+@use "@/styles/functions.scss" as *;
+
 .main-page {
 	height: 100%;
 	overflow: hidden;
-	padding-top: 24px;
-	padding-bottom: 24px;
-	display: grid;
-	grid-template-rows: [top-start] auto [content-start] 1fr [content-end] auto [top-end];
-	row-gap: 24px;
+	padding-top: rem(24);
+	padding-bottom: rem(24);
+	row-gap: rem(24);
 
-	&__header{
+	&__header {
 		display: flex;
+		grid-column: content;
 		justify-content: space-between;
 		align-items: center;
-		
-		.header-logo{
-			
+
+		.header-logo {
+			display: flex;
+			gap: rem(6);
+			align-items: center;
+			svg {
+				width: rem(28);
+				height: rem(28);
+				color: var(--main-color);
+			}
 		}
+
+		.header-menu {
+			display: flex;
+			align-items: center;
+			gap: rem(12);
+			svg {
+				width: rem(20);
+				height: rem(20);
+				color: var(--sub-color);
+			}
+		}
+
+		@media only screen and (max-width: calc(1024px + 5rem)) {
+			.header-logo h2 {
+				font-size: 1.5rem;
+			}
+		}
+
+		@media only screen and (max-width: calc(640px + 5rem)) {
+			.header-logo h2 {
+				display: none;
+			}
+		}
+	}
+
+	&__content {
+		grid-column: full-width;
+	}
+
+	&__footer {
+		grid-column: content;
+		user-select: none;
+		display: grid;
+		grid-template-columns: 1fr max-content;
+		gap: 2rem;
+
+		.footer-right {
+			user-select: none;
+			display: flex;
+			grid-template-columns: 1fr max-content;
+		}
+
+		@media only screen and (max-width: calc(1024px + 5rem)) {
+			.footer-right {
+				display: flex;
+				flex-direction: column;
+				text-align: left;
+			}
+		}
+	}
+}
+
+.content-grid {
+	--padding-inline: 2rem;
+	--content-max-width: 1536px;
+	--breakout-size: calc(
+		(calc(var(--content-max-width) + 12rem) - var(--content-max-width)) / 2
+	);
+	display: grid;
+	justify-content: center;
+	grid-template-rows: [top-start] auto [content-start] 1fr [content-end] auto [top-end];
+	grid-template-columns:
+		[full-width-start] var(--padding-inline)
+		[full-width-padding-start] minmax(0, 1fr)
+		[breakout-start] minmax(0, var(--breakout-size))
+		[content-start] min(
+			100% - var(--padding-inline) * 2,
+			var(--content-max-width)
+		)
+		[content-end] minmax(0, var(--breakout-size))
+		[breakout-end] minmax(0, 1fr)
+		[full-width-padding-end] var(--padding-inline)
+		[full-width-end];
+}
+
+.content-grid > :not(.breakout, .full-width, .full-width-padding) {
+	grid-column: content;
+}
+
+.content-grid > .breakout {
+	grid-column: breakout;
+}
+
+.content-grid > .full-width {
+	grid-column: full-width;
+}
+
+.content-grid > .full-width-padding {
+	grid-column: full-width-padding;
+}
+
+@media only screen and (max-width: calc(1536px + 5rem)) {
+	.content-grid {
+		--content-max-width: 1280px;
+	}
+}
+
+@media only screen and (max-width: calc(1280px + 5rem)) {
+	.content-grid {
+		--content-max-width: 1024px;
+	}
+}
+
+@media only screen and (max-width: calc(1024px + 5rem)) {
+	.content-grid {
+		--content-max-width: 768px;
+	}
+}
+
+@media only screen and (max-width: calc(768px + 5rem)) {
+	.content-grid {
+		--content-max-width: 640px;
 	}
 }

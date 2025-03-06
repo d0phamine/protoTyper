@@ -1,6 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 
-import { IMainConfiguratorState, TextMode } from "@/types"
+import { IMainConfiguratorState, TextMode } from "@/types/features"
 
 export const setWordMode: CaseReducer<
 	IMainConfiguratorState,
