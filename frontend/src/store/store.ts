@@ -2,7 +2,7 @@ import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { combineSlices, configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/query"
 
-import { mainConfiguratorSlice } from "@/features/MainConfigurator/mainConfiguratorSlice"
+import { mainConfiguratorSlice } from "@/store/MainConfigurator/mainConfiguratorSlice"
 
 const rootReducer = combineSlices(mainConfiguratorSlice)
 export type RootState = ReturnType<typeof rootReducer>
