@@ -1,1 +1,2 @@
-export * from "./mainConfiguratorTypes";
+export * from "./mainConfigurator";
+export * from "./themeSwitcher";

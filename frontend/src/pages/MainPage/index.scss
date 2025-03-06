@@ -1,4 +1,19 @@
 .main-page {
 	height: 100%;
 	overflow: hidden;
+	padding-top: 24px;
+	padding-bottom: 24px;
+	display: grid;
+	grid-template-rows: [top-start] auto [content-start] 1fr [content-end] auto [top-end];
+	row-gap: 24px;
+
+	&__header{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		
+		.header-logo{
+			
+		}
+	}
 }

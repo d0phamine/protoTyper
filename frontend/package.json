@@ -11,11 +11,13 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
+		"@fontsource-variable/geist-mono": "^5.2.5",
 		"@gravity-ui/uikit": "^7.5.0",
 		"@reduxjs/toolkit": "^2.6.0",
 		"path": "^0.12.7",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
+		"react-redux": "^9.2.0",
 		"react-router-dom": "^7.2.0"
 	},
 	"devDependencies": {

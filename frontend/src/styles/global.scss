@@ -1,4 +1,5 @@
 @use "./variables.scss" as *;
+@use "@fontsource-variable/geist-mono" as *;
 
 * {
 	box-sizing: border-box;
@@ -10,7 +11,7 @@ body {
 	height: 100%;
 	padding: 0;
 	margin: 0;
-	// font-family: "JetBrains Mono Variable", monospace;
+	font-family: 'Geist Mono Variable', monospace;
 	color: var(--text-color);
 	background: var(--bg-color);
 	overflow: hidden;
@@ -25,24 +26,31 @@ body {
 	}
 
 	p {
+		font-size: 17px;
+		line-height: 24px;
+		font-weight: 400;
 		margin: 0;
 	}
 
 	h1 {
-		font-size: 24px;
-		font-weight: 600;
+		font-size: 32px;
+		line-height: 40px;
+		font-weight: 700;
 		margin: 0;
 	}
 	h2 {
-		font-size: 20px;
+		font-size: 28px;
+		line-height: 36px;
 		font-weight: 600;
 		margin: 0;
 	}
 	h3 {
-		font-size: 14px;
+		font-size: 24px;
+		line-height: 28px;
 		font-weight: 600;
 		margin: 0;
 	}
+	
 }
 
 // .styled-notifications-success {

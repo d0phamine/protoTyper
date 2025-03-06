@@ -2,15 +2,24 @@ import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { combineSlices, configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/query"
 
-import { mainConfiguratorSlice } from "@/store/MainConfigurator/mainConfiguratorSlice"
+import { themeApi } from "@/api"
 
-const rootReducer = combineSlices(mainConfiguratorSlice)
+import { mainConfiguratorSlice } from "@/store/MainConfigurator/"
+import { themeSwitcherSlice } from "@/store/ThemeSwitcher/"
+
+const rootReducer = combineSlices(
+	mainConfiguratorSlice,
+	themeSwitcherSlice,
+	themeApi,
+)
 export type RootState = ReturnType<typeof rootReducer>
 
 export const makeStore = (preloadedState?: Partial<RootState>) => {
 	const store = configureStore({
 		reducer: rootReducer,
 		preloadedState,
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware().concat(themeApi.middleware),
 	})
 
 	setupListeners(store.dispatch)
