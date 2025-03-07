@@ -16,7 +16,7 @@ import { ThemeSwitcher } from "@/features/ThemeSwitcher"
 import "./index.scss"
 
 export const MainPage: FC = () => {
-	const [themeSwitcherOpen, setthemeSwitcherOpen] = useState(false)
+	const [themeSwitcherOpen, setThemeSwitcherOpen] = useState(false)
 	return (
 		<MainLayout>
 			<div className="main-page content-grid">
@@ -31,7 +31,7 @@ export const MainPage: FC = () => {
 					</div>
 					<ThemeSwitcher
 						open={themeSwitcherOpen}
-						setClose={() => setthemeSwitcherOpen(!themeSwitcherOpen)}
+						setClose={() => setThemeSwitcherOpen(!themeSwitcherOpen)}
 					/>
 				</div>
 				<div className="main-page__content content-grid"></div>
@@ -42,7 +42,7 @@ export const MainPage: FC = () => {
 							title="themes"
 							icon={<Palette />}
 							onClick={() =>
-								setthemeSwitcherOpen(!themeSwitcherOpen)
+								setThemeSwitcherOpen(!themeSwitcherOpen)
 							}
 						/>
 						<SubButton title="1.0.0" icon={<Tag />} />
