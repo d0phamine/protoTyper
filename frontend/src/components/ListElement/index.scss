@@ -1,0 +1,26 @@
+@use "@/styles/functions.scss" as *;
+
+.list-element {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	grid-gap: rem(12);
+	align-items: center;
+	padding: rem(6) rem(12);
+	transition: 0.125s;
+
+	&__title {
+		font-size: rem(12);
+		line-height: rem(12);
+		font-weight: 400;
+	}
+}
+
+.list-element:hover{
+	transition: 0.125s;
+	cursor: pointer;
+	background-color: var(--text-color);
+
+	.list-element__title {
+		color: var(--bg-color);
+	}
+}

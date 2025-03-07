@@ -1,6 +1,9 @@
+import { createSelector } from "@reduxjs/toolkit"
+
 import { IMainConfiguratorState } from "@/types/features"
 
 import { createAppSlice } from "@/store/createAppSlice"
+import { RootState } from "@/store/store"
 
 import { setWordMode } from "./reducers"
 
@@ -16,7 +19,22 @@ export const mainConfiguratorSlice = createAppSlice({
 	},
 })
 
-export const { reducer, actions } = mainConfiguratorSlice
+/**
+ * Селекторы для mainConfigurator
+ *
+ * @param {RootState} state - Глобальное состояние Redux.
+ * @returns {selectors} Мемоизированные селекторы.
+ */
+
+const selectMainConfigurator = (state: RootState) => state.mainConfigurator
+
+const selectWordMode = createSelector(
+	[selectMainConfigurator],
+	(state) => state.textMode,
+)
+
+const { reducer, actions } = mainConfiguratorSlice
 export const { setWordModeAction } = actions
+export const selectors = { selectWordMode }
 export default reducer
 

@@ -9,3 +9,7 @@ export const setCurrentTheme: CaseReducer<
 	state.currentTheme = action.payload
 }
 
+export const toggleThemeSwitcherOpen: CaseReducer<
+	IThemeSwitcherState> = (state) => {
+	state.themeSwitcherOpen = !state.themeSwitcherOpen
+}

@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 
 import {
 	BookOpen,
@@ -11,12 +11,15 @@ import {
 import { SubButton } from "@/components"
 import { MainLayout } from "@/layouts/MainLayout"
 
+import { themeSwitcherSlice } from "@/store/ThemeSwitcher"
+import { useAppDispatch } from "@/store/hooks"
+
 import { ThemeSwitcher } from "@/features/ThemeSwitcher"
 
 import "./index.scss"
 
 export const MainPage: FC = () => {
-	const [themeSwitcherOpen, setThemeSwitcherOpen] = useState(false)
+	const dispatcher = useAppDispatch()
 	return (
 		<MainLayout>
 			<div className="main-page content-grid">
@@ -29,10 +32,7 @@ export const MainPage: FC = () => {
 						<Person />
 						<BookOpen />
 					</div>
-					<ThemeSwitcher
-						open={themeSwitcherOpen}
-						setClose={() => setThemeSwitcherOpen(!themeSwitcherOpen)}
-					/>
+					<ThemeSwitcher />
 				</div>
 				<div className="main-page__content content-grid"></div>
 				<div className="main-page__footer">
@@ -42,7 +42,9 @@ export const MainPage: FC = () => {
 							title="themes"
 							icon={<Palette />}
 							onClick={() =>
-								setThemeSwitcherOpen(!themeSwitcherOpen)
+								dispatcher(
+									themeSwitcherSlice.actions.toggleThemeSwitcherOpenAction(),
+								)
 							}
 						/>
 						<SubButton title="1.0.0" icon={<Tag />} />

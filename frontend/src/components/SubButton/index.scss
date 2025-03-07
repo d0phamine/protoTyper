@@ -6,13 +6,13 @@
 	gap: 0.25rem;
 	align-items: center;
 	padding: 0.25em 0.5em;
-	transition: 1s;
 
 	&__title {
 		p {
 			line-height: 1;
 			font-weight: 400;
 			color: var(--sub-color);
+			transition: 0.125s;
 		}
 	}
 
@@ -24,20 +24,22 @@
 			width: rem(12);
 			color: var(--sub-color);
 			line-height: 1;
+			transition: 0.125s;
 		}
 	}
 }
 
 .sub-button:hover {
 	cursor: pointer;
-	transition: 1s;
 
-	& .sub-button__title p {
+	.sub-button__title p {
 		color: var(--text-color);
+		transition: 0.125s;
 	}
 
-	& .sub-button__icon svg {
+	.sub-button__icon svg {
 		color: var(--text-color);
+		transition: 0.125s;
 	}
 }
 

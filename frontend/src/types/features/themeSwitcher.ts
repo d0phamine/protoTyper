@@ -9,4 +9,5 @@ export type Theme = {
 export interface IThemeSwitcherState {
 	themes: Theme[]
 	currentTheme: string
+	themeSwitcherOpen: boolean
 }
