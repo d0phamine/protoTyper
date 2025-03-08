@@ -11,7 +11,7 @@
 		max-height: 400px;
 		background-color: var(--bg-color);
 		border: solid var(--sub-alt-color) rem(3);
-		border-radius: rem(8);
+		border-radius: rem(12);
 		display: flex; // Добавляем flex-контейнер
 		flex-direction: column; // Элементы идут вертикально
 		align-items: stretch;
@@ -32,8 +32,8 @@
 				align-items: center;
 
 				svg {
-					width: rem(24);
-					height: rem(24);
+					width: rem(18);
+					height: rem(18);
 					fill: var(--sub-color);
 				}
 			}
