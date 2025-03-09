@@ -1,7 +1,9 @@
 import { FC, RefObject, useRef } from "react"
 
-import { Magnifier } from "@gravity-ui/icons"
+import { Check, Magnifier } from "@gravity-ui/icons"
 import { Modal, TextInput } from "@gravity-ui/uikit"
+
+import { ListElement, ThemeBubbles } from "@/components"
 
 import { Theme } from "@/types/features"
 
@@ -12,8 +14,6 @@ import {
 	themeSwitcherSlice,
 } from "@/store/ThemeSwitcher"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
-
-import { ListElement } from "@/components/ListElement"
 
 import "./index.scss"
 
@@ -29,6 +29,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 			themeSwitcherSelectors.themeSwitcherOpen,
 		),
 		filteredThemes: useAppSelector(themeSwitcherSelectors.filteredThemes),
+		currentTheme: useAppSelector(themeSwitcherSelectors.currentTheme),
 	}
 	const { data: themes } = useGetThemesQuery()
 	return (
@@ -64,7 +65,28 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 				<div className="content-theme-list">
 					{themes &&
 						selector.filteredThemes.map((theme: Theme) => (
-							<ListElement key={theme.name} title={theme.name} />
+							<ListElement
+								key={theme.name}
+								title={theme.name}
+								active={
+									theme.name === selector.currentTheme
+										? true
+										: false
+								}
+								startContent={
+									theme.name === selector.currentTheme ? (
+										<Check />
+									) : null
+								}
+								endContent={<ThemeBubbles theme={theme} />}
+								onClick={() =>
+									dispatcher(
+										themeSwitcherSlice.actions.setCurrentThemeAction(
+											theme.name,
+										),
+									)
+								}
+							/>
 						))}
 				</div>
 			</div>

@@ -1,0 +1,27 @@
+@use "@/styles/functions.scss" as *;
+
+.theme-bubbles {
+	height: rem(12);
+	display: flex;
+	gap: rem(8);
+    border-radius: rem(12);
+
+	&__main-color {
+		width: rem(12);
+		height: rem(12);
+		border-radius: rem(12);
+	}
+
+	&__sub-color {
+		width: rem(12);
+		height: rem(12);
+		border-radius: rem(12);
+	}
+
+	&__text-color {
+		width: rem(12);
+		height: rem(12);
+		border-radius: rem(12);
+	}
+}
+

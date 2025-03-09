@@ -3,9 +3,9 @@
 .list-element {
 	display: grid;
 	grid-template-columns: auto 1fr auto;
-	grid-gap: rem(12);
+	grid-gap: rem(8);
 	align-items: center;
-	padding: rem(6) rem(12);
+	padding: rem(8) rem(16);
 	transition: 0.125s;
 
 	&__title {
@@ -14,9 +14,27 @@
 		font-weight: 400;
 		color: var(--sub-color);
 	}
+
+	&__start-content {
+		width: rem(12);
+		display: flex;
+		align-items: center;
+		svg {
+			width: rem(12);
+			height: rem(12);
+			color: var(--sub-color);
+		}
+	}
 }
 
-.list-element:hover{
+.list-element.active {
+	background-color: var(--text-color);
+	&__title {
+		color: var(--bg-color);
+	}
+}
+
+.list-element:hover {
 	transition: 0.125s;
 	cursor: pointer;
 	background-color: var(--text-color);
@@ -25,3 +43,4 @@
 		color: var(--bg-color);
 	}
 }
+

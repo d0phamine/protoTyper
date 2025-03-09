@@ -11,8 +11,11 @@ import {
 import { SubButton } from "@/components"
 import { MainLayout } from "@/layouts/MainLayout"
 
-import { themeSwitcherSlice } from "@/store/ThemeSwitcher"
-import { useAppDispatch } from "@/store/hooks"
+import {
+	themeSwitcherSelectors,
+	themeSwitcherSlice,
+} from "@/store/ThemeSwitcher"
+import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
 import { ThemeSwitcher } from "@/features/ThemeSwitcher"
 
@@ -20,6 +23,9 @@ import "./index.scss"
 
 export const MainPage: FC = () => {
 	const dispatcher = useAppDispatch()
+	const selector = {
+		currentTheme: useAppSelector(themeSwitcherSelectors.currentTheme),
+	}
 	return (
 		<MainLayout>
 			<div className="main-page content-grid">
@@ -39,7 +45,7 @@ export const MainPage: FC = () => {
 					<div className="footer-left"></div>
 					<div className="footer-right">
 						<SubButton
-							title="themes"
+							title={selector.currentTheme}
 							icon={<Palette />}
 							onClick={() =>
 								dispatcher(
