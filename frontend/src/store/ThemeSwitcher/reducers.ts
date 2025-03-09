@@ -2,17 +2,24 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 
 import { IThemeSwitcherState } from "@/types/features"
 
+export const toggleThemeSwitcherOpen: CaseReducer<IThemeSwitcherState> = (
+	state,
+) => {
+	state.themeSwitcherOpen = !state.themeSwitcherOpen
+}
+
+export const initCurrentTheme: CaseReducer<IThemeSwitcherState> = (state) => {
+	if (localStorage.getItem("theme")) {
+		state.currentTheme = localStorage.getItem("theme") || "serika_dark"
+	}
+}
+
 export const setCurrentTheme: CaseReducer<
 	IThemeSwitcherState,
 	PayloadAction<string>
 > = (state, action) => {
 	state.currentTheme = action.payload
-}
-
-export const toggleThemeSwitcherOpen: CaseReducer<IThemeSwitcherState> = (
-	state,
-) => {
-	state.themeSwitcherOpen = !state.themeSwitcherOpen
+	localStorage.setItem("theme", action.payload)
 }
 
 export const filterThemes: CaseReducer<
@@ -21,3 +28,4 @@ export const filterThemes: CaseReducer<
 > = (state, action) => {
 	state.themeFilter = action.payload
 }
+

@@ -1,14 +1,13 @@
 import { createSelector } from "@reduxjs/toolkit"
 
-import { IThemeSwitcherState, Theme } from "@/types/features"
-
-import { themeApi } from "@/api"
+import { IThemeSwitcherState } from "@/types/features"
 
 import { createAppSlice } from "@/store/createAppSlice"
 import { RootState } from "@/store/store"
 
 import {
 	filterThemes,
+	initCurrentTheme,
 	setCurrentTheme,
 	toggleThemeSwitcherOpen,
 } from "./reducers"
@@ -27,6 +26,7 @@ export const themeSwitcherSlice = createAppSlice({
 		setCurrentThemeAction: setCurrentTheme,
 		toggleThemeSwitcherOpenAction: toggleThemeSwitcherOpen,
 		themeFilterAction: filterThemes,
+		initCurrentThemeAction: initCurrentTheme,
 	},
 })
 
@@ -54,22 +54,10 @@ const themeFilter = createSelector(
 	(state) => state.themeFilter,
 )
 
-const filteredThemes = createSelector(
-	[
-		(state: RootState) => themeApi.endpoints.getThemes.select()(state),
-		themeFilter,
-	],
-	(queryResult, themeFilter) =>
-		queryResult.data?.filter((theme: Theme) =>
-			theme.name.toLowerCase().includes(themeFilter.toLowerCase()),
-		) || [],
-)
-
 export const { reducer, actions } = themeSwitcherSlice
 export const themeSwitcherSelectors = {
 	currentTheme,
 	themeSwitcherOpen,
 	themeFilter,
-	filteredThemes,
 }
 
