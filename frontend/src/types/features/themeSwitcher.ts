@@ -11,4 +11,5 @@ export interface IThemeSwitcherState {
 	currentTheme: string
 	themeSwitcherOpen: boolean
 	themeFilter: string
+	activeThemeIndex: number | undefined
 }

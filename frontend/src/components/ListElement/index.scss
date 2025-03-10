@@ -1,6 +1,7 @@
 @use "@/styles/functions.scss" as *;
 
 .list-element {
+	width: 100%;
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	grid-gap: rem(8);
@@ -27,6 +28,20 @@
 	}
 }
 
+.g-list {
+	&__items {
+		.g-list__item_active {
+			.list-element {
+				transition: 0.125s;
+				background-color: var(--text-color);
+				&__title {
+					color: var(--bg-color);
+				}
+			}
+		}
+	}
+}
+
 .list-element.active {
 	background-color: var(--text-color);
 	&__title {
@@ -34,13 +49,13 @@
 	}
 }
 
-.list-element:hover {
-	transition: 0.125s;
-	cursor: pointer;
-	background-color: var(--text-color);
+// .list-element:hover {
+// 	transition: 0.125s;
+// 	cursor: pointer;
+// 	background-color: var(--text-color);
 
-	.list-element__title {
-		color: var(--bg-color);
-	}
-}
+// 	.list-element__title {
+// 		color: var(--bg-color);
+// 	}
+// }
 

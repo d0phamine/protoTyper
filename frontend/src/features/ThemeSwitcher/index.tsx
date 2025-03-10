@@ -1,10 +1,9 @@
 import { FC, RefObject, useEffect, useRef } from "react"
 
 import { Check, Magnifier } from "@gravity-ui/icons"
-import { Modal, TextInput } from "@gravity-ui/uikit"
+import { List, Modal } from "@gravity-ui/uikit"
 
 import { ListElement, ThemeBubbles } from "@/components"
-import { useFilteredThemes } from "@/hooks"
 
 import { Theme } from "@/types/features"
 
@@ -23,21 +22,23 @@ export interface IThemeSwitcherProps {
 }
 
 export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
-	const inputRef = useRef<HTMLInputElement | null>(null)
+	const inputRef = useRef<List<Theme>>(null)
 
 	const dispatcher = useAppDispatch()
 	const selector = {
 		themeSwitcherOpen: useAppSelector(
 			themeSwitcherSelectors.themeSwitcherOpen,
 		),
-		// filteredThemes: useAppSelector(themeSwitcherSelectors.filteredThemes),
 		currentTheme: useAppSelector(themeSwitcherSelectors.currentTheme),
 		themeFilter: useAppSelector(themeSwitcherSelectors.themeFilter),
+		activeThemeIndex: useAppSelector(
+			themeSwitcherSelectors.activeThemeIndex,
+		),
 	}
 
 	const { data: themes } = useGetThemesQuery()
 
-	const filteredThemes = useFilteredThemes(themes, selector.themeFilter)
+	// const filteredThemes = useFilteredThemes(themes, selector.themeFilter)
 
 	useEffect(() => {
 		dispatcher(themeSwitcherSlice.actions.initCurrentThemeAction())
@@ -57,62 +58,63 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 		<Modal
 			className="theme-switcher"
 			open={selector.themeSwitcherOpen}
-			initialFocus={inputRef}
 			onOpenChange={() =>
 				dispatcher(
 					themeSwitcherSlice.actions.toggleThemeSwitcherOpenAction(),
 				)
 			}
+			onTransitionInComplete={() => {
+				inputRef.current?.activateItem(selector.activeThemeIndex)
+				inputRef.current?.refFilter.current.focus()
+			}}
 			onTransitionOutComplete={() =>
 				dispatcher(themeSwitcherSlice.actions.themeFilterAction(""))
 			}
 			container={props.propContainer?.current || undefined}
 		>
 			<div className="theme-switcher__content">
-				<div className="content-search">
-					<div className="content-search__icon">
-						<Magnifier />
-					</div>
-					<TextInput
-						className="content-search__text-input"
-						view="clear"
-						onChange={(e) =>
+				<List
+					items={themes && themes.map((theme: Theme) => theme)}
+					renderItem={(item, isItemActive, itemIndex) => {
+						if (item.name === selector.currentTheme) {
 							dispatcher(
-								themeSwitcherSlice.actions.themeFilterAction(
-									e.target.value,
+								themeSwitcherSlice.actions.setActiveThemeIndexAction(
+									itemIndex,
 								),
 							)
 						}
-						ref={inputRef}
-					/>
-				</div>
-				<div className="content-theme-list">
-					{themes &&
-						filteredThemes.map((theme: Theme) => (
+						return (
 							<ListElement
-								key={theme.name}
-								title={theme.name}
+								key={item.name}
+								title={item.name}
 								active={
-									theme.name === selector.currentTheme
+									item.name === selector.currentTheme
 										? true
 										: false
 								}
 								startContent={
-									theme.name === selector.currentTheme ? (
+									item.name === selector.currentTheme ? (
 										<Check />
 									) : null
 								}
-								endContent={<ThemeBubbles theme={theme} />}
-								onClick={() =>
-									dispatcher(
-										themeSwitcherSlice.actions.setCurrentThemeAction(
-											theme.name,
-										),
-									)
-								}
+								endContent={<ThemeBubbles theme={item} />}
 							/>
-						))}
-				</div>
+						)
+					}}
+					filterItem={(filter) => (item) =>
+						item.name.includes(filter)
+					}
+					filterPlaceholder={"Search..."}
+					onItemClick={(item) =>
+						dispatcher(
+							themeSwitcherSlice.actions.setCurrentThemeAction(
+								item.name,
+							),
+						)
+					}
+					itemsHeight={(items:Theme[]) => items.length * 28}
+					ref={inputRef}
+				/>
 			</div>
 		</Modal>
 	)

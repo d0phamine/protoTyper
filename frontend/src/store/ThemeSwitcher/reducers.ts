@@ -22,6 +22,13 @@ export const setCurrentTheme: CaseReducer<
 	localStorage.setItem("theme", action.payload)
 }
 
+export const setActiveThemeIndex: CaseReducer<
+	IThemeSwitcherState,
+	PayloadAction<number>
+> = (state, action) => {
+	state.activeThemeIndex = action.payload
+}
+
 export const filterThemes: CaseReducer<
 	IThemeSwitcherState,
 	PayloadAction<string>

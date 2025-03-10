@@ -10,6 +10,7 @@ import {
 	initCurrentTheme,
 	setCurrentTheme,
 	toggleThemeSwitcherOpen,
+	setActiveThemeIndex
 } from "./reducers"
 
 const initialState: IThemeSwitcherState = {
@@ -17,6 +18,7 @@ const initialState: IThemeSwitcherState = {
 	currentTheme: "serika_dark",
 	themeSwitcherOpen: false,
 	themeFilter: "",
+	activeThemeIndex: null,
 }
 
 export const themeSwitcherSlice = createAppSlice({
@@ -27,6 +29,7 @@ export const themeSwitcherSlice = createAppSlice({
 		toggleThemeSwitcherOpenAction: toggleThemeSwitcherOpen,
 		themeFilterAction: filterThemes,
 		initCurrentThemeAction: initCurrentTheme,
+		setActiveThemeIndexAction: setActiveThemeIndex
 	},
 })
 
@@ -54,10 +57,16 @@ const themeFilter = createSelector(
 	(state) => state.themeFilter,
 )
 
+const activeThemeIndex = createSelector(
+	[ThemeSwitcherSelector],
+	(state) => state.activeThemeIndex
+)
+
 export const { reducer, actions } = themeSwitcherSlice
 export const themeSwitcherSelectors = {
 	currentTheme,
 	themeSwitcherOpen,
 	themeFilter,
+	activeThemeIndex
 }
 

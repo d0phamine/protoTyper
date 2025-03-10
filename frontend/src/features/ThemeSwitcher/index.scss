@@ -16,7 +16,7 @@
 		flex-direction: column; // Элементы идут вертикально
 		align-items: stretch;
 		gap: rem(12);
-		overflow: hidden; // Вложенные элементы растягиваются на всю ширину
+		overflow: hidden;
 
 		.content-search {
 			display: grid;
@@ -36,6 +36,33 @@
 					height: rem(18);
 					fill: var(--sub-color);
 				}
+			}
+		}
+
+		.g-list {
+			overflow-y: auto;
+			&__filter {
+				margin: 0;
+				display: grid;
+				grid-template-columns: 1fr;
+				padding: rem(12) rem(12) rem(12) rem(12);
+				grid-gap: rem(12);
+				align-items: center;
+				width: 100%;
+
+				.g-text-input {
+					&__content {
+						border: 0;
+
+						input::placeholder {
+							color: var(--sub-color);
+						}
+					}
+					
+				}
+			}
+
+			&__items{
 			}
 		}
 
