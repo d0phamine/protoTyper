@@ -1,6 +1,6 @@
 import { FC, RefObject, useEffect, useRef } from "react"
 
-import { Check, Magnifier } from "@gravity-ui/icons"
+import { Check } from "@gravity-ui/icons"
 import { List, Modal } from "@gravity-ui/uikit"
 
 import { ListElement, ThemeBubbles } from "@/components"
