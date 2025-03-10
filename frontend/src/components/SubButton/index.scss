@@ -29,6 +29,21 @@
 	}
 }
 
+.sub-button.active{
+	.sub-button__title{
+		p {
+			color: var(--main-color);
+		}
+		
+	}
+
+	.sub-button__icon {
+		svg {
+			color: var(--main-color);
+		}
+	}
+}
+
 .sub-button:hover {
 	cursor: pointer;
 

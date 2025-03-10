@@ -42,12 +42,20 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 
 	useEffect(() => {
 		dispatcher(themeSwitcherSlice.actions.initCurrentThemeAction())
+		
 		const link = document.createElement("link")
 		link.rel = "stylesheet"
 		link.href = `/themes/${selector.currentTheme}.css`
 		link.id = "theme-stylesheet"
-
 		document.head.appendChild(link)
+
+		const activeIndex =
+			themes?.findIndex(
+				(theme) => theme.name === selector.currentTheme,
+			) ?? -1
+		dispatcher(
+			themeSwitcherSlice.actions.setActiveThemeIndexAction(activeIndex),
+		)
 
 		return () => {
 			document.getElementById("theme-stylesheet")?.remove()
@@ -75,14 +83,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 			<div className="theme-switcher__content">
 				<List
 					items={themes && themes.map((theme: Theme) => theme)}
-					renderItem={(item, isItemActive, itemIndex) => {
-						if (item.name === selector.currentTheme) {
-							dispatcher(
-								themeSwitcherSlice.actions.setActiveThemeIndexAction(
-									itemIndex,
-								),
-							)
-						}
+					renderItem={(item) => {
 						return (
 							<ListElement
 								key={item.name}
@@ -112,7 +113,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 							),
 						)
 					}
-					itemsHeight={(items:Theme[]) => items.length * 28}
+					itemsHeight={(items: Theme[]) => items.length * 28}
 					ref={inputRef}
 				/>
 			</div>

@@ -16,6 +16,7 @@ body {
 	color: var(--text-color);
 	background: var(--bg-color);
 	overflow: hidden;
+	caret-color: var(--caret-color);
 
 	::-webkit-scrollbar {
 		display: none;

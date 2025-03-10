@@ -1,0 +1,26 @@
+@use "@/styles/functions.scss" as *;
+
+.main-configurator{
+    display: flex;
+    background-color: var(--sub-alt-color);
+    padding: 0.5em 0.5em;
+    border-radius: rem(8);
+    width: max-content;
+    justify-self: center;
+
+    &__addictions {
+        display: flex;
+    }
+
+    &__spacer {
+        height: auto;
+        width: 0.25em;
+        background-color: var(--bg-color);
+        border-radius: rem(4);
+        margin: 0 0.5em;
+    }
+
+    &__text-mode {
+        display: flex;
+    }
+}
