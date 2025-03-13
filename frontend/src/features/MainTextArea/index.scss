@@ -1,0 +1,35 @@
+@use "@/styles/functions.scss" as *;
+
+.main-text-area {
+	display: flex;
+	align-items: center;
+    outline: none;
+	&__text {
+		height: min-content;
+		outline: none;
+		display: flex;
+		flex-wrap: wrap;
+		row-gap: rem(12);
+		column-gap: rem(6);
+
+		.text-word {
+			.letter {
+				font-size: rem(28);
+				line-height: 1em;
+			}
+
+			.letter.incomplete {
+				color: var(--sub-color);
+			}
+
+			.letter.correct {
+				color: var(--text-color);
+			}
+
+			.letter.incorrect {
+				color: var(--error-color);
+			}
+		}
+	}
+}
+

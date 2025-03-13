@@ -17,7 +17,7 @@ import {
 } from "@/store/ThemeSwitcher"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
-import { ThemeSwitcher, MainConfigurator } from "@/features"
+import { ThemeSwitcher, MainConfigurator, MainTextArea } from "@/features"
 
 import "./index.scss"
 
@@ -42,6 +42,7 @@ export const MainPage: FC = () => {
 				</div>
 				<div className="main-page__content content-grid">
 					<MainConfigurator/>
+					<MainTextArea/>
 				</div>
 				<div className="main-page__footer">
 					<div className="footer-left"></div>
