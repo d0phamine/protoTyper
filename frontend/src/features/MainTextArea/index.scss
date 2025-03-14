@@ -3,16 +3,24 @@
 .main-text-area {
 	display: flex;
 	align-items: center;
-    outline: none;
+	outline: none;
 	&__text {
 		height: min-content;
 		outline: none;
 		display: flex;
 		flex-wrap: wrap;
 		row-gap: rem(12);
-		column-gap: rem(6);
+
+		.text-caret {
+			position: absolute;
+			height: rem(28);
+			width: 2px;
+			background-color: aqua;
+		}
 
 		.text-word {
+			min-height: rem(28);
+			min-width: rem(16);
 			.letter {
 				font-size: rem(28);
 				line-height: 1em;
