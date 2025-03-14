@@ -34,25 +34,39 @@ export const MainTextArea: FC = () => {
 	const caretRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
-		const caret = caretRef.current;
-		const activeLetter = document.querySelector(".letter.active");
-	
-		if (caret && activeLetter) {
-			const target = activeLetter as HTMLElement;
-			const params = target.getBoundingClientRect();
-	
-			if (params.height !== 0) {
-				caret.style.left = `${params.x + 16}px`;
-				caret.style.top = `${params.y}px`;
-			} else {
-				caret.style.left = `${params.x + 16}px`;
-				caret.style.top = `${params.y - 4}px`;
+		const updateCaretPosition = () => {
+			const caret = caretRef.current
+			const initWord = document.querySelector(".text-word")
+			const activeLetter = document.querySelector(".letter.active")
+
+			if (caret && activeLetter && currIndex !== -1) {
+				const target = activeLetter as HTMLElement
+				const params = target.getBoundingClientRect()
+
+				caret.style.left = `${params.x + 16}px`
+				caret.style.top = `${params.y}px`
 			}
-		} else if (caret) {
-			caret.style.left = "0px";
-			caret.style.top = "0px";
+
+			if (caret && initWord && currIndex === -1) {
+				const initTarget = initWord as HTMLElement
+				const initParams = initTarget.getBoundingClientRect()
+
+				caret.style.left = `${initParams.x}px`
+				caret.style.top = `${initParams.y}px`
+			}
 		}
-	}, [currIndex]);
+
+		// Вызываем сразу, чтобы обновить при рендере
+		updateCaretPosition()
+
+		// Добавляем слушатель изменения размеров окна
+		window.addEventListener("resize", updateCaretPosition)
+
+		// Удаляем слушатель при размонтировании компонента
+		return () => {
+			window.removeEventListener("resize", updateCaretPosition)
+		}
+	}, [currIndex])
 
 	let counter = 0
 

@@ -15,7 +15,8 @@
 			position: absolute;
 			height: rem(28);
 			width: 2px;
-			background-color: aqua;
+			background-color: var(--caret-color);
+			animation: caretFlashSmooth 1s infinite;
 		}
 
 		.text-word {
@@ -41,3 +42,13 @@
 	}
 }
 
+@keyframes caretFlashSmooth {
+	0%,
+	100% {
+	  opacity: 0;
+	}
+  
+	50% {
+	  opacity: 1;
+	}
+  }
