@@ -1,0 +1,166 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Lesson API",
+    "version": "1.0.0",
+    "description": "API schema for handling lessons, texts, and translations."
+  },
+  "paths": {
+    "/getText": {
+      "get": {
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "modificators",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "punctuation": { "type": "boolean" },
+                "numbers": { "type": "boolean" },
+                "textType": { "type": "string", "enum": ["words", "quote", "zen"] }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getText"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getLessons": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "List of lessons",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getLessons"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getLessonByName": {
+      "get": {
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lesson details by name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getLessonByName"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getTranslationForWord": {
+      "get": {
+        "parameters": [
+          {
+            "name": "word",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Translation details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getTranslationForWord"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "getText": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "text": { "type": "string" }
+        }
+      },
+      "getLessons": {
+        "type": "object",
+        "properties": {
+          "lessons": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/lesson" }
+          },
+          "amount": { "type": "integer" }
+        }
+      },
+      "getLessonByName": {
+        "type": "object",
+        "properties": {
+          "lesson": { "$ref": "#/components/schemas/lesson" }
+        }
+      },
+      "lesson": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "text": { "$ref": "#/components/schemas/getText" },
+          "timing": { "type": "integer", "nullable": true },
+          "percentage": { "type": "integer" },
+          "language": { "type": "string", "nullable": true },
+          "status": { "type": "string", "enum": ["success", "fail", "notchecked"] }
+        }
+      },
+      "getTranslationForWord": {
+        "type": "object",
+        "properties": {
+          "word": { "type": "string" },
+          "translation": { "type": "string" },
+          "pronunciation": { "type": "string" },
+          "audio": { "type": "string", "format": "binary" }
+        }
+      }
+    }
+  }
+}
