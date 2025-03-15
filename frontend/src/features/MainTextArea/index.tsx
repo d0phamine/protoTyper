@@ -56,13 +56,9 @@ export const MainTextArea: FC = () => {
 			}
 		}
 
-		// Вызываем сразу, чтобы обновить при рендере
 		updateCaretPosition()
 
-		// Добавляем слушатель изменения размеров окна
 		window.addEventListener("resize", updateCaretPosition)
-
-		// Удаляем слушатель при размонтировании компонента
 		return () => {
 			window.removeEventListener("resize", updateCaretPosition)
 		}
