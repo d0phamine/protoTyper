@@ -2,6 +2,7 @@ import { FC } from "react"
 
 import { BookOpen } from "@gravity-ui/icons"
 
+import { BigListElement } from "@/components"
 import Drawer from "react-modern-drawer"
 import "react-modern-drawer/dist/index.css"
 
@@ -35,7 +36,21 @@ export const LessonsDrawer: FC = () => {
 						<BookOpen />
 						<h3>Lessons</h3>
 					</div>
-					<div className="lessons-drawer-content__body"></div>
+					<div className="lessons-drawer-content__body">
+						<BigListElement
+							title="lesson 1"
+							description="description of first lesson and something special"
+							setActive
+						/>
+						<BigListElement
+							title="lesson 2"
+							description="description of second lesson and something special"
+						/>
+						<BigListElement
+							title="lesson 3"
+							description="description of third lesson and something special"
+						/>
+					</div>
 				</div>
 			</Drawer>
 		</>

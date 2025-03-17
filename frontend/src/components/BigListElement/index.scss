@@ -1,0 +1,62 @@
+@use "@/styles/functions.scss" as *;
+
+.big-list-element {
+	display: flex;
+	gap: rem(6);
+	align-items: center;
+	border-radius: rem(4);
+	padding: 4px;
+    transition: 0.125s;
+
+	&__status-bar {
+		width: 4px;
+		height: 100%;
+		border-radius: 2px;
+		background-color: var(--sub-color);
+		flex-shrink: 0;
+	}
+
+	&__content {
+		.content-header {
+			p {
+				font-size: rem(16);
+				line-height: 1;
+			}
+		}
+
+		.content-description {
+			font-size: rem(12);
+			color: var(--sub-color);
+		}
+	}
+
+	&__end-content {
+		width: rem(24);
+		height: rem(24);
+		margin-left: auto;
+		flex-shrink: 0;
+	}
+}
+
+.big-list-element.active{
+    .big-list-element__status-bar {
+        background-color: var(--main-color);
+    }
+}
+
+.big-list-element:hover {
+	background-color: var(--text-color);
+    cursor: pointer;
+    transition: 0.125s;
+
+	.content-header {
+		p {
+			color: var(--bg-color);
+		}
+	}
+
+    .content-description {
+        color: var(--sub-color);
+    }
+}
+
