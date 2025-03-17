@@ -35,6 +35,6 @@ const selectWordMode = createSelector(
 
 const { reducer, actions } = mainConfiguratorSlice
 export const { setWordModeAction } = actions
-export const selectors = { selectWordMode }
+export const mainConfiguratorSelectors = { selectWordMode }
 export default reducer
 

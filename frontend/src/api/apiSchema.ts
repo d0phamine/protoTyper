@@ -98,7 +98,7 @@ export type lesson = {
     id: number
     name: string
     description: string
-    text: getText
+    text: getText[]
     timing?: number
     percentage: number
     language?:string

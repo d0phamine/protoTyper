@@ -9,6 +9,7 @@ import { Theme } from "@/types/features"
 
 import { useGetThemesQuery } from "@/api"
 
+import { featureStoreSelectors, featureStoreSlice } from "@/store/FeatureStore"
 import {
 	themeSwitcherSelectors,
 	themeSwitcherSlice,
@@ -27,7 +28,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 	const dispatcher = useAppDispatch()
 	const selector = {
 		themeSwitcherOpen: useAppSelector(
-			themeSwitcherSelectors.themeSwitcherOpen,
+			featureStoreSelectors.themeSwitcherOpen,
 		),
 		currentTheme: useAppSelector(themeSwitcherSelectors.currentTheme),
 		themeFilter: useAppSelector(themeSwitcherSelectors.themeFilter),
@@ -42,7 +43,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 
 	useEffect(() => {
 		dispatcher(themeSwitcherSlice.actions.initCurrentThemeAction())
-		
+
 		const link = document.createElement("link")
 		link.rel = "stylesheet"
 		link.href = `/themes/${selector.currentTheme}.css`
@@ -68,7 +69,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 			open={selector.themeSwitcherOpen}
 			onOpenChange={() =>
 				dispatcher(
-					themeSwitcherSlice.actions.toggleThemeSwitcherOpenAction(),
+					featureStoreSlice.actions.toggleThemeSwitcherOpenAction(),
 				)
 			}
 			onTransitionInComplete={() => {

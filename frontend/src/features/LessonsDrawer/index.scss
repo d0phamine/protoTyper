@@ -1,0 +1,26 @@
+@use "@/styles/functions.scss" as *;
+
+.lessons-drawer {
+    background-color: var(--bg-color) !important;
+    width: 300px !important;
+
+    .lessons-drawer-content{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &__header{
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: rem(12);
+
+            svg {
+                width: rem(24);
+                height: rem(24);
+                color: var(--main-color);
+            }
+            
+        }
+    }
+}

@@ -6,10 +6,12 @@ import { themeApi } from "@/api"
 
 import { mainConfiguratorSlice } from "@/store/MainConfigurator/"
 import { themeSwitcherSlice } from "@/store/ThemeSwitcher/"
+import { featureStoreSlice } from "@/store/FeatureStore"
 
 const rootReducer = combineSlices(
 	mainConfiguratorSlice,
 	themeSwitcherSlice,
+	featureStoreSlice,
 	themeApi,
 )
 export type RootState = ReturnType<typeof rootReducer>

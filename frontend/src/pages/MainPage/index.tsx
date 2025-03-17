@@ -9,15 +9,19 @@ import {
 } from "@gravity-ui/icons"
 
 import { SubButton } from "@/components"
+import {
+	LessonsDrawer,
+	MainConfigurator,
+	MainTextArea,
+	ThemeSwitcher,
+} from "@/features"
 import { MainLayout } from "@/layouts/MainLayout"
 
+import { featureStoreSlice } from "@/store/FeatureStore"
 import {
 	themeSwitcherSelectors,
-	themeSwitcherSlice,
 } from "@/store/ThemeSwitcher"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
-
-import { ThemeSwitcher, MainConfigurator, MainTextArea } from "@/features"
 
 import "./index.scss"
 
@@ -35,14 +39,23 @@ export const MainPage: FC = () => {
 						<h2>protoTyper</h2>
 					</div>
 					<div className="header-menu">
-						<Person />
-						<BookOpen />
+						<SubButton icon={<Person />} style={{ gap: 0 }} />
+						<SubButton
+							icon={<BookOpen />}
+							style={{ gap: 0 }}
+							onClick={() =>
+								dispatcher(
+									featureStoreSlice.actions.toggleLessonsDrawerOpenAction(),
+								)
+							}
+						/>
 					</div>
 					<ThemeSwitcher />
 				</div>
 				<div className="main-page__content content-grid">
-					<MainConfigurator/>
-					<MainTextArea/>
+					<MainConfigurator />
+					<MainTextArea />
+					<LessonsDrawer />
 				</div>
 				<div className="main-page__footer">
 					<div className="footer-left"></div>
@@ -52,7 +65,7 @@ export const MainPage: FC = () => {
 							icon={<Palette />}
 							onClick={() =>
 								dispatcher(
-									themeSwitcherSlice.actions.toggleThemeSwitcherOpenAction(),
+									featureStoreSlice.actions.toggleThemeSwitcherOpenAction(),
 								)
 							}
 						/>

@@ -2,12 +2,6 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 
 import { IThemeSwitcherState } from "@/types/features"
 
-export const toggleThemeSwitcherOpen: CaseReducer<IThemeSwitcherState> = (
-	state,
-) => {
-	state.themeSwitcherOpen = !state.themeSwitcherOpen
-}
-
 export const initCurrentTheme: CaseReducer<IThemeSwitcherState> = (state) => {
 	if (localStorage.getItem("theme")) {
 		state.currentTheme = localStorage.getItem("theme") || "serika_dark"
