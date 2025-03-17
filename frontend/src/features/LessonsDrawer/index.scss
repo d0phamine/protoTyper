@@ -8,6 +8,7 @@
         height: 100%;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
 
         &__header{
             padding: 1.5rem 1rem;
@@ -29,6 +30,7 @@
             gap: rem(6);
             flex-direction: column;
             padding: 0 1rem;
+            overflow-y: auto;
         }
     }
 }
