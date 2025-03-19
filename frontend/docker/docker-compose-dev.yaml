@@ -1,0 +1,14 @@
+name: protoTyper
+services:
+  frontend:
+    build:
+      context: ../
+      target: development
+    container_name: protoTyper-front-dev
+    command: npm run dev
+    ports: ['3000:3000']
+    volumes: ['../:/protoTyper', '/protoTyper/node_modules']
+    env_file:
+      - ../.env_dev
+
+# docker compose -f docker/docker-compose-dev.yaml up -d

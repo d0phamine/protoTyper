@@ -1,0 +1,12 @@
+name: protoTyper
+services:
+  frontend:
+    container_name: protoTyper-front-prod-build
+    build:
+      context: ../
+      target: production
+    image: protoTyper-frontend-prod:1.0
+    env_file:
+      - ../.env
+    ports:
+      - "3000:80"
