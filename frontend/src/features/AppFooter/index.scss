@@ -1,0 +1,25 @@
+.app-footer {
+    grid-column: content;
+    user-select: none;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    gap: 2rem;
+
+    &__left {
+
+    }
+
+    &__right {
+        user-select: none;
+        display: flex;
+        grid-template-columns: 1fr max-content;
+    }
+
+    @media only screen and (max-width: calc(1024px + 5rem)) {
+        &__right {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+    }
+}
