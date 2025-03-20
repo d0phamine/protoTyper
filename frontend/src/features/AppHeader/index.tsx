@@ -11,10 +11,11 @@ import { SubButton } from "@/components"
 import { featureStoreSlice } from "@/store/FeatureStore"
 import { useAppDispatch } from "@/store/hooks"
 
+import { LessonsDrawer } from "../LessonsDrawer"
 import "./index.scss"
 
 export const AppHeader: FC = () => {
-    const dispatcher = useAppDispatch()
+	const dispatcher = useAppDispatch()
 	return (
 		<div className="app-header">
 			<div className="app-header__logo">
@@ -32,7 +33,9 @@ export const AppHeader: FC = () => {
 						)
 					}
 				/>
+				<LessonsDrawer />
 			</div>
 		</div>
 	)
 }
+

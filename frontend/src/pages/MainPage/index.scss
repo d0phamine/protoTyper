@@ -5,52 +5,14 @@
 	overflow: hidden;
 	padding-top: rem(24);
 	padding-bottom: rem(24);
+	display: grid;
+    grid-template-rows: 0.5fr auto 1fr;
 
-	&__header {
-		display: flex;
-		grid-column: content;
-		justify-content: space-between;
-		align-items: center;
-
-		.header-logo {
-			display: flex;
-			gap: rem(6);
-			align-items: center;
-			svg {
-				width: rem(28);
-				height: rem(28);
-				color: var(--main-color);
-			}
-		}
-
-		.header-menu {
-			display: flex;
-			align-items: center;
-			// gap: rem(12);
-			svg {
-				width: rem(20);
-				height: rem(20);
-				color: var(--sub-color);
-			}
-		}
-
-		@media only screen and (max-width: calc(1024px + 5rem)) {
-			.header-logo h2 {
-				font-size: 1.5rem;
-			}
-		}
-
-		@media only screen and (max-width: calc(640px + 5rem)) {
-			.header-logo h2 {
-				display: none;
-			}
-		}
-	}
-
-	&__content {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		align-items: center;
-	}
+	// &__content {
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	gap: 2rem;
+	// 	align-items: center;
+		
+	// }
 }
