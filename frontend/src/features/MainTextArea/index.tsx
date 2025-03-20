@@ -43,7 +43,7 @@ export const MainTextArea: FC = () => {
 				const target = activeLetter as HTMLElement
 				const params = target.getBoundingClientRect()
 
-				caret.style.left = `${params.x + 16}px`
+				caret.style.left = `${params.x + params.width}px`
 				caret.style.top = `${params.y}px`
 			}
 

@@ -9,7 +9,6 @@
 		outline: none;
 		display: flex;
 		flex-wrap: wrap;
-		row-gap: rem(12);
 
 		.text-caret {
 			position: absolute;
@@ -21,10 +20,12 @@
 
 		.text-word {
 			min-height: rem(28);
-			min-width: rem(16);
+			min-width: rem(10);
 			.letter {
+				min-width: rem(10);
 				font-size: rem(28);
-				line-height: 1em;
+				display: inline-block;
+				height: 100%;
 			}
 
 			.letter.incomplete {
@@ -45,10 +46,11 @@
 @keyframes caretFlashSmooth {
 	0%,
 	100% {
-	  opacity: 0;
+		opacity: 0;
 	}
-  
+
 	50% {
-	  opacity: 1;
+		opacity: 1;
 	}
-  }
+}
+
