@@ -1,36 +1,36 @@
 @use "@/styles/functions.scss" as *;
 
 .lessons-drawer {
-    background-color: var(--bg-color) !important;
-    width: 300px !important;
+	background-color: var(--bg-color) !important;
+	width: 300px !important;
 
-    .lessons-drawer-content{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
+	.lessons-drawer-content {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
 
-        &__header{
-            padding: 1.5rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: rem(12);
+		&__header {
+			padding: 1.5rem 1rem;
+			display: flex;
+			align-items: center;
+			gap: rem(12);
 
-            svg {
-                width: rem(24);
-                height: rem(24);
-                color: var(--main-color);
-            }
-        }
+			svg {
+				width: rem(24);
+				height: rem(24);
+				color: var(--main-color);
+			}
+		}
 
-        &__body {
-            width: 100%;
-            height: max-content;
-            display: flex;
-            gap: rem(6);
-            flex-direction: column;
-            padding: 0 1rem;
-            overflow-y: auto;
-        }
-    }
+		&__body {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			gap: rem(6);
+			flex-direction: column;
+			padding: 0 1rem;
+			overflow-y: auto;
+		}
+	}
 }

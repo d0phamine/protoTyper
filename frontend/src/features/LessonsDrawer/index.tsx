@@ -3,6 +3,7 @@ import { FC } from "react"
 import { BookOpen } from "@gravity-ui/icons"
 
 import { BigListElement } from "@/components"
+import Skeleton from "react-loading-skeleton"
 import Drawer from "react-modern-drawer"
 import "react-modern-drawer/dist/index.css"
 import { useNavigate } from "react-router-dom"
@@ -46,7 +47,7 @@ export const LessonsDrawer: FC = () => {
 					</div>
 					<div className="lessons-drawer-content__body">
 						{isLessonsLoading ? (
-							<div>Loading</div>
+							<Skeleton count={5}/>
 						) : (
 							lessons?.map((lesson: Lesson) => {
 								return (
