@@ -11,13 +11,7 @@ import {
 
 import { SubButton } from "@/components"
 
-// import { useAppDispatch, useAppSelector } from "@/store/hooks"
-
 import "./index.scss"
-
-// export interface IMainConfiguratorProps {
-
-// }
 
 export const MainConfigurator: FC = () => {
 	return (
@@ -37,7 +31,12 @@ export const MainConfigurator: FC = () => {
 				<SubButton title={"zen"} icon={<Ghost />} setActive />
 			</div>
 			<div className="main-configurator__spacer"></div>
-			<SubButton title={""} icon={<Keyboard />} style={{ gap: 0 }} setActive/>
+			<SubButton
+				title={""}
+				icon={<Keyboard />}
+				style={{ gap: 0 }}
+				setActive
+			/>
 		</div>
 	)
 }

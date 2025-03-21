@@ -3,6 +3,7 @@ import { FC } from "react"
 import { Palette, Tag } from "@gravity-ui/icons"
 
 import { SubButton } from "@/components"
+import { ThemeSwitcher } from "@/features"
 
 import { featureStoreSlice } from "@/store/FeatureStore"
 import { themeSwitcherSelectors } from "@/store/ThemeSwitcher"
@@ -17,6 +18,7 @@ export const AppFooter: FC = () => {
 	}
 	return (
 		<div className="app-footer">
+			<ThemeSwitcher />
 			<div className="app-footer__left"></div>
 			<div className="app-footer__right">
 				<SubButton

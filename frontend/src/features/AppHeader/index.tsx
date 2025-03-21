@@ -7,6 +7,7 @@ import {
 } from "@gravity-ui/icons"
 
 import { SubButton } from "@/components"
+import { useNavigate } from "react-router-dom"
 
 import { featureStoreSlice } from "@/store/FeatureStore"
 import { useAppDispatch } from "@/store/hooks"
@@ -15,10 +16,11 @@ import { LessonsDrawer } from "../LessonsDrawer"
 import "./index.scss"
 
 export const AppHeader: FC = () => {
+	const navigate = useNavigate()
 	const dispatcher = useAppDispatch()
 	return (
 		<div className="app-header">
-			<div className="app-header__logo">
+			<div className="app-header__logo" onClick={() => navigate("/")}>
 				<LayoutHeaderCellsLargeThunderbolt />
 				<h2>protoTyper</h2>
 			</div>

@@ -5,6 +5,11 @@ import { BookOpen } from "@gravity-ui/icons"
 import { BigListElement } from "@/components"
 import Drawer from "react-modern-drawer"
 import "react-modern-drawer/dist/index.css"
+import { useNavigate } from "react-router-dom"
+
+import { Lesson } from "@/types/features"
+
+import { useGetLessonsQuery } from "@/api"
 
 import { featureStoreSelectors, featureStoreSlice } from "@/store/FeatureStore"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
@@ -12,12 +17,15 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import "./index.scss"
 
 export const LessonsDrawer: FC = () => {
+	const navigate = useNavigate()
 	const dispatcher = useAppDispatch()
 	const selector = {
 		selectLessonsDrawerOpen: useAppSelector(
 			featureStoreSelectors.lessonsDrawerOpen,
 		),
 	}
+
+	const { data: lessons, isLoading: isLessonsLoading } = useGetLessonsQuery()
 
 	return (
 		<>
@@ -37,19 +45,22 @@ export const LessonsDrawer: FC = () => {
 						<h3>Lessons</h3>
 					</div>
 					<div className="lessons-drawer-content__body">
-						<BigListElement
-							title="lesson 1"
-							description="description of first lesson and something special"
-							setActive
-						/>
-						<BigListElement
-							title="lesson 2"
-							description="description of second lesson and something special"
-						/>
-						<BigListElement
-							title="lesson 3"
-							description="description of third lesson and something special"
-						/>
+						{isLessonsLoading ? (
+							<div>Loading</div>
+						) : (
+							lessons?.map((lesson: Lesson) => {
+								return (
+									<BigListElement
+										key={lesson.id}
+										title={lesson.name}
+										description={lesson.description}
+										onClick={() => {
+											navigate(`/lessons/${lesson.id}`)
+										}}
+									/>
+								)
+							})
+						)}
 					</div>
 				</div>
 			</Drawer>
