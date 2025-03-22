@@ -1,9 +1,11 @@
 import { StrictMode } from "react"
 
 import { ThemeProvider } from "@gravity-ui/uikit"
+
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import { HashRouter } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
 
 import { store } from "@/store/store"
 
@@ -16,6 +18,7 @@ createRoot(document.getElementById("root")!).render(
 			<ThemeProvider>
 				<Provider store={store}>
 					<Router />
+					<ToastContainer position="bottom-left" autoClose={2500} />
 				</Provider>
 			</ThemeProvider>
 		</HashRouter>

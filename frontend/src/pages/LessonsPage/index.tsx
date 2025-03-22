@@ -1,6 +1,7 @@
 import { FC } from "react"
 
 import { MainTextArea } from "@/features"
+import { useToaster } from "@/hooks"
 import { MainLayout } from "@/layouts/MainLayout"
 import { useParams } from "react-router-dom"
 
@@ -13,11 +14,20 @@ import "./index.scss"
 
 export const LessonsPage: FC = () => {
 	const { id } = useParams<{ id: string }>()
-	const { data: lesson, isLoading, error } = useGetLessonByIdQuery(Number(id))
-
+	const {
+		data: lesson,
+		isLoading,
+		error,
+		isSuccess,
+		isError,
+	} = useGetLessonByIdQuery(Number(id))
 	const selector = {
 		currentLesson: useAppSelector(lessonsStoreSelectors.currentLesson),
 	}
+
+	useToaster.useLoadingToast(isLoading, "Loading lesson...")
+	useToaster.useSuccessToast(isSuccess, "Lesson loaded successfully")
+	useToaster.useErrorToast(isError, `Error loading lesson ${error}`)
 
 	console.log(lesson)
 

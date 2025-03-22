@@ -21,6 +21,7 @@
 		"react-modern-drawer": "^1.4.0",
 		"react-redux": "^9.2.0",
 		"react-router-dom": "^7.2.0",
+		"react-toastify": "^11.0.5",
 		"react-typing-game-hook": "^1.4.2"
 	},
 	"devDependencies": {

@@ -61,30 +61,45 @@ body {
 	}
 }
 
-// .styled-notifications-success {
-// 	background-color: rgba(85, 85, 85, 0.124);
-// 	backdrop-filter: blur(8px);
-// 	border: 1px solid rgba(255, 255, 255, 0.124);
-// 	box-shadow: 0 0px 25px rgba(7, 188, 13, 0.277);
-// 	color: #d0d0d2;
+.Toastify__toast{
+	background-color: var(--bg-color);
+	color: var(--sub-color);
 
-// 	.Toastify__progress-bar--success {
-// 		background: rgba(7, 188, 12, 1);
-// 		height: 2px;
-// 	}
-// }
+	.Toastify__toast-icon{
+		.Toastify__spinner{
+			border-color: var(--main-color) transparent transparent transparent;
+		}
+	}
+}
 
-// .styled-notifications-error {
-// 	background-color: rgba(85, 85, 85, 0.124);
-// 	backdrop-filter: blur(8px);
-// 	border: 1px solid rgba(255, 255, 255, 0.124);
-// 	box-shadow: 0 0px 25px rgba(188, 31, 7, 0.277);
-// 	color: #d0d0d2;
-// 	.Toastify__progress-bar--error {
-// 		background: rgba(231, 77, 60, 0.742);
-// 		height: 2px;
-// 	}
-// }
+.styled-notifications-success {
+	background-color: var(--bg-color);
+	color: var(--sub-color);
+
+	.Toastify__progress-bar--success {
+		background: var(--main-color);
+	}
+
+	.Toastify__toast-icon {
+		svg {
+			fill: var(--main-color);
+		}
+	}
+}
+
+.styled-notifications-loading {
+	background-color: var(--bg-color);
+	color: var(--sub-color);
+}
+
+.styled-notifications-error {
+	background-color: var(--bg-color);
+	color: var(--sub-color);
+	.Toastify__progress-bar--error {
+		background: var(--error-color);
+		height: 2px;
+	}
+}
 
 .centered-class {
 	display: flex;
@@ -94,8 +109,8 @@ body {
 }
 
 .react-loading-skeleton {
-	--base-color: var(--sub-color);
-	--highlight-color: var(--bg-color);
+	--base-color: var(--bg-color);
+	--highlight-color: var(--sub-color);
 	--animation-duration: 1.5s;
 	--animation-direction: normal;
 	--pseudo-element-display: block; /* Enable animation */

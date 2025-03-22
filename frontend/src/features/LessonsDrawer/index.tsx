@@ -47,7 +47,7 @@ export const LessonsDrawer: FC = () => {
 					</div>
 					<div className="lessons-drawer-content__body">
 						{isLessonsLoading ? (
-							<Skeleton count={5} />
+							<Skeleton count={5} height={40}/>
 						) : (
 							lessons?.map((lesson: Lesson) => {
 								return (
