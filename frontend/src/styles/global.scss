@@ -12,7 +12,7 @@ body {
 	height: 100%;
 	padding: 0;
 	margin: 0;
-	font-family: 'Geist Mono Variable', monospace;
+	font-family: "Geist Mono Variable", monospace;
 	color: var(--text-color);
 	background: var(--bg-color);
 	overflow: hidden;
@@ -53,7 +53,7 @@ body {
 		margin: 0;
 	}
 
-	h4{
+	h4 {
 		font-size: rem(20);
 		line-height: rem(24);
 		font-weight: 500;
@@ -93,33 +93,27 @@ body {
 	padding: 12px;
 }
 
-@keyframes react-loading-skeleton {
-	100% {
-	  transform: translateX(100%);
-	}
-  }
-  
-  .react-loading-skeleton {
+.react-loading-skeleton {
 	--base-color: var(--sub-color);
 	--highlight-color: var(--bg-color);
 	--animation-duration: 1.5s;
 	--animation-direction: normal;
 	--pseudo-element-display: block; /* Enable animation */
-  
+
 	background-color: var(--base-color);
-  
+
 	width: 100%;
 	border-radius: 0.25rem;
 	display: inline-flex;
 	line-height: 1;
-  
+
 	position: relative;
 	user-select: none;
 	overflow: hidden;
-  }
-  
-  .react-loading-skeleton::after {
-	content: ' ';
+}
+
+.react-loading-skeleton::after {
+	content: " ";
 	display: var(--pseudo-element-display);
 	position: absolute;
 	top: 0;
@@ -128,25 +122,31 @@ body {
 	height: 100%;
 	background-repeat: no-repeat;
 	background-image: var(
-	  --custom-highlight-background,
-	  linear-gradient(
-		90deg,
-		var(--base-color) 0%,
-		var(--highlight-color) 50%,
-		var(--base-color) 100%
-	  )
+		--custom-highlight-background,
+		linear-gradient(
+			90deg,
+			var(--base-color) 0%,
+			var(--highlight-color) 50%,
+			var(--base-color) 100%
+		)
 	);
 	transform: translateX(-100%);
-  
+
 	animation-name: react-loading-skeleton;
 	animation-direction: var(--animation-direction);
 	animation-duration: var(--animation-duration);
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: infinite;
-  }
-  
-  @media (prefers-reduced-motion) {
-	.react-loading-skeleton {
-	  --pseudo-element-display: none; /* Disable animation */
+}
+
+@keyframes react-loading-skeleton {
+	100% {
+		transform: translateX(100%);
 	}
-  }
+}
+
+@media (prefers-reduced-motion) {
+	.react-loading-skeleton {
+		--pseudo-element-display: none; /* Disable animation */
+	}
+}

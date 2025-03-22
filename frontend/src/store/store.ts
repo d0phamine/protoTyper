@@ -7,11 +7,13 @@ import { protoTyperApi, themeApi } from "@/api"
 import { featureStoreSlice } from "@/store/FeatureStore"
 import { mainConfiguratorSlice } from "@/store/MainConfigurator/"
 import { themeSwitcherSlice } from "@/store/ThemeSwitcher/"
+import { lessonsStoreSlice } from "@/store/LessonsStore"
 
 const rootReducer = combineSlices(
 	mainConfiguratorSlice,
 	themeSwitcherSlice,
 	featureStoreSlice,
+	lessonsStoreSlice,
 	themeApi,
 	protoTyperApi,
 )
