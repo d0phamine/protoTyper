@@ -4,23 +4,14 @@ import { IAuthStore } from "@/types/processes"
 
 import { protoTyperApi } from "@/api"
 
-export const setToken = (
-	builder: ActionReducerMapBuilder<IAuthStore>,
-) => {
+export const setToken = (builder: ActionReducerMapBuilder<IAuthStore>) => {
 	builder.addMatcher(
-		protoTyperApi.endpoints.loginUser.matchFulfilled,
+		(action) =>
+			protoTyperApi.endpoints.loginUser.matchFulfilled(action) ||
+			protoTyperApi.endpoints.registerUser.matchFulfilled(action),
 		(state, action) => {
 			state.authToken = action.payload
 			state.isAuth = true
-			localStorage.setItem("userToken", state.authToken)
-		},
-	)
-	builder.addMatcher(
-		protoTyperApi.endpoints.registerUser.matchFulfilled,
-		(state, action) => {
-			state.authToken = action.payload
-			state.isAuth = true
-			localStorage.setItem("userToken", state.authToken)
 		},
 	)
 }
