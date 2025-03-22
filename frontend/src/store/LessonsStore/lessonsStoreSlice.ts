@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit"
 
-import { ILessonsStore } from "@/types/features"
+import { ILessonsStore } from "@/types/processes"
 
 import { createAppSlice } from "@/store/createAppSlice"
 import { RootState } from "@/store/store"

@@ -8,12 +8,14 @@ import { featureStoreSlice } from "@/store/FeatureStore"
 import { mainConfiguratorSlice } from "@/store/MainConfigurator/"
 import { themeSwitcherSlice } from "@/store/ThemeSwitcher/"
 import { lessonsStoreSlice } from "@/store/LessonsStore"
+import { authStoreSlice } from "./AuthStore/authStoreSlice"
 
 const rootReducer = combineSlices(
 	mainConfiguratorSlice,
 	themeSwitcherSlice,
 	featureStoreSlice,
 	lessonsStoreSlice,
+	authStoreSlice,
 	themeApi,
 	protoTyperApi,
 )

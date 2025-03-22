@@ -1,7 +1,6 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit"
 
-import { ILessonsStore } from "@/types/features"
-import { Lesson } from "@/types/features"
+import { ILessonsStore, Lesson } from "@/types/processes"
 
 import { protoTyperApi } from "@/api"
 
