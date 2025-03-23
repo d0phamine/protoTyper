@@ -1,0 +1,41 @@
+@use "@/styles/functions.scss" as *;
+
+.custom-button {
+	.g-button {
+		width: 100%;
+		background-color: var(--sub-alt-color);
+		border-radius: rem(8) !important;
+		color: var(--sub-color);
+		transition: 0.3s;
+
+		.g-button__text {
+			display: flex;
+			align-items: center;
+			gap: rem(6);
+		}
+	}
+}
+
+.custom-button.disabled {
+	.g-button {
+		opacity: 0.5;
+	}
+}
+
+.custom-button.disabled:hover {
+	.g-button {
+		cursor: default;
+		background-color: var(--sub-alt-color);
+		color: var(--sub-color);
+	}
+}
+
+.custom-button:hover {
+	.g-button {
+		cursor: pointer;
+		transition: 0.3s;
+		background-color: var(--sub-color);
+		color: var(--text-color);
+	}
+}
+

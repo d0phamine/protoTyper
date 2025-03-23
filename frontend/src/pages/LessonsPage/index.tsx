@@ -1,9 +1,9 @@
 import { FC } from "react"
+import { useParams } from "react-router-dom"
 
 import { MainTextArea } from "@/features"
 import { useToaster } from "@/hooks"
 import { MainLayout } from "@/layouts/MainLayout"
-import { useParams } from "react-router-dom"
 
 import { useGetLessonByIdQuery } from "@/api"
 

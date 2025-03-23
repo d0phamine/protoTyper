@@ -1,0 +1,18 @@
+@use "@/styles/functions.scss" as *;
+
+.login-wrapper {
+	display: flex;
+	flex-direction: column;
+
+	&__header {
+		display: flex;
+		flex-direction: row;
+		gap: rem(6);
+	}
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: rem(6);
+    }
+}

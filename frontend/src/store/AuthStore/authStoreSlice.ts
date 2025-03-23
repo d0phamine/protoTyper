@@ -26,10 +26,11 @@ export const authStoreSlice = createAppSlice({
 
 const selectAuthStore = (state: RootState) => state.authStore
 
+const isAuth = createSelector([selectAuthStore], (state) => state.isAuth)
 const currentUser = createSelector([selectAuthStore], (state) => state.user)
 
 const { reducer, actions } = authStoreSlice
 export const { initAuthAction } = actions
-export const authStoreSelectors = { currentUser }
+export const authStoreSelectors = { currentUser, isAuth }
 export default reducer
 

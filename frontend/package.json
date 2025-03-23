@@ -14,6 +14,7 @@
 		"@fontsource-variable/geist-mono": "^5.2.5",
 		"@gravity-ui/uikit": "^7.5.0",
 		"@reduxjs/toolkit": "^2.6.0",
+		"formik": "^2.4.6",
 		"path": "^0.12.7",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
@@ -22,7 +23,8 @@
 		"react-redux": "^9.2.0",
 		"react-router-dom": "^7.2.0",
 		"react-toastify": "^11.0.5",
-		"react-typing-game-hook": "^1.4.2"
+		"react-typing-game-hook": "^1.4.2",
+		"yup": "^1.6.1"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.21.0",

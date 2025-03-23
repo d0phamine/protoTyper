@@ -22,9 +22,10 @@
 		"^@/features/(.*)$",
 		"^@/utils/(.*)$",
 		"^@/components/(.*)$",
-		"^@/layout/(.*)$",
+		"^@/layouts/(.*)$",
 		"^@/pages/(.*)$",
-		"^[./]"
+		"^[./]",
+		"^.+\\.css$"
 	],
 	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true
