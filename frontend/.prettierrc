@@ -10,7 +10,7 @@
 		"@trivago/prettier-plugin-sort-imports"
 	],
 	"importOrder": [
-		"^react$",
+		"^react(.*)$",
 		"^@gravity-ui/(.*)$",
 		"<THIRD_PARTY_MODULES>",
 		"^@/assets",

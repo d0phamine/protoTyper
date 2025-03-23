@@ -9,10 +9,16 @@ import { Theme } from "@/types/features"
 
 import { useGetThemesQuery } from "@/api"
 
-import { featureStoreSelectors, featureStoreSlice } from "@/store/FeatureStore"
 import {
+	featureStoreSelectors,
+	toggleThemeSwitcherOpenAction,
+} from "@/store/FeatureStore"
+import {
+	initCurrentThemeAction,
+	setActiveThemeIndexAction,
+	setCurrentThemeAction,
+	themeFilterAction,
 	themeSwitcherSelectors,
-	themeSwitcherSlice,
 } from "@/store/ThemeSwitcher"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
@@ -42,7 +48,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 	// const filteredThemes = useFilteredThemes(themes, selector.themeFilter)
 
 	useEffect(() => {
-		dispatcher(themeSwitcherSlice.actions.initCurrentThemeAction())
+		dispatcher(initCurrentThemeAction())
 
 		const link = document.createElement("link")
 		link.rel = "stylesheet"
@@ -54,9 +60,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 			themes?.findIndex(
 				(theme) => theme.name === selector.currentTheme,
 			) ?? -1
-		dispatcher(
-			themeSwitcherSlice.actions.setActiveThemeIndexAction(activeIndex),
-		)
+		dispatcher(setActiveThemeIndexAction(activeIndex))
 
 		return () => {
 			document.getElementById("theme-stylesheet")?.remove()
@@ -67,18 +71,12 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 		<Modal
 			className="theme-switcher"
 			open={selector.themeSwitcherOpen}
-			onOpenChange={() =>
-				dispatcher(
-					featureStoreSlice.actions.toggleThemeSwitcherOpenAction(),
-				)
-			}
+			onOpenChange={() => dispatcher(toggleThemeSwitcherOpenAction())}
 			onTransitionInComplete={() => {
 				inputRef.current?.activateItem(selector.activeThemeIndex)
 				inputRef.current?.refFilter.current.focus()
 			}}
-			onTransitionOutComplete={() =>
-				dispatcher(themeSwitcherSlice.actions.themeFilterAction(""))
-			}
+			onTransitionOutComplete={() => dispatcher(themeFilterAction(""))}
 			container={props.propContainer?.current || undefined}
 		>
 			<div className="theme-switcher__content">
@@ -108,11 +106,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 					}
 					filterPlaceholder={"Search..."}
 					onItemClick={(item) =>
-						dispatcher(
-							themeSwitcherSlice.actions.setCurrentThemeAction(
-								item.name,
-							),
-						)
+						dispatcher(setCurrentThemeAction(item.name))
 					}
 					itemsHeight={(items: Theme[]) => items.length * 28}
 					ref={inputRef}

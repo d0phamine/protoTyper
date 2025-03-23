@@ -5,7 +5,7 @@ import { Palette, Tag } from "@gravity-ui/icons"
 import { SubButton } from "@/components"
 import { ThemeSwitcher } from "@/features"
 
-import { featureStoreSlice } from "@/store/FeatureStore"
+import { toggleThemeSwitcherOpenAction } from "@/store/FeatureStore"
 import { themeSwitcherSelectors } from "@/store/ThemeSwitcher"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
@@ -24,11 +24,7 @@ export const AppFooter: FC = () => {
 				<SubButton
 					title={selector.currentTheme}
 					icon={<Palette />}
-					onClick={() =>
-						dispatcher(
-							featureStoreSlice.actions.toggleThemeSwitcherOpenAction(),
-						)
-					}
+					onClick={() => dispatcher(toggleThemeSwitcherOpenAction())}
 				/>
 				<SubButton title="1.0.0" icon={<Tag />} />
 			</div>

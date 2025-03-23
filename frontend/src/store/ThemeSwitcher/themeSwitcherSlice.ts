@@ -8,8 +8,8 @@ import { RootState } from "@/store/store"
 import {
 	filterThemes,
 	initCurrentTheme,
+	setActiveThemeIndex,
 	setCurrentTheme,
-	setActiveThemeIndex
 } from "./reducers"
 
 const initialState: IThemeSwitcherState = {
@@ -27,7 +27,7 @@ export const themeSwitcherSlice = createAppSlice({
 		setCurrentThemeAction: setCurrentTheme,
 		themeFilterAction: filterThemes,
 		initCurrentThemeAction: initCurrentTheme,
-		setActiveThemeIndexAction: setActiveThemeIndex
+		setActiveThemeIndexAction: setActiveThemeIndex,
 	},
 })
 
@@ -52,13 +52,19 @@ const themeFilter = createSelector(
 
 const activeThemeIndex = createSelector(
 	[ThemeSwitcherSelector],
-	(state) => state.activeThemeIndex
+	(state) => state.activeThemeIndex,
 )
 
 export const { reducer, actions } = themeSwitcherSlice
+export const {
+	setCurrentThemeAction,
+	themeFilterAction,
+	initCurrentThemeAction,
+	setActiveThemeIndexAction,
+} = actions
 export const themeSwitcherSelectors = {
 	currentTheme,
 	themeFilter,
-	activeThemeIndex
+	activeThemeIndex,
 }
 

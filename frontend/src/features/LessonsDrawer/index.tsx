@@ -1,18 +1,21 @@
 import { FC } from "react"
-
-import { BookOpen } from "@gravity-ui/icons"
-
-import { BigListElement } from "@/components"
 import Skeleton from "react-loading-skeleton"
 import Drawer from "react-modern-drawer"
 import "react-modern-drawer/dist/index.css"
 import { useNavigate } from "react-router-dom"
 
-import { Lesson } from "@/types/features"
+import { BookOpen } from "@gravity-ui/icons"
+
+import { BigListElement } from "@/components"
+
+import { Lesson } from "@/types/processes"
 
 import { useGetLessonsQuery } from "@/api"
 
-import { featureStoreSelectors, featureStoreSlice } from "@/store/FeatureStore"
+import {
+	featureStoreSelectors,
+	toggleLessonsDrawerOpenAction,
+} from "@/store/FeatureStore"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
 import "./index.scss"
@@ -32,11 +35,7 @@ export const LessonsDrawer: FC = () => {
 		<>
 			<Drawer
 				open={selector.selectLessonsDrawerOpen}
-				onClose={() =>
-					dispatcher(
-						featureStoreSlice.actions.toggleLessonsDrawerOpenAction(),
-					)
-				}
+				onClose={() => dispatcher(toggleLessonsDrawerOpenAction())}
 				direction="right"
 				className="lessons-drawer"
 			>
@@ -47,7 +46,7 @@ export const LessonsDrawer: FC = () => {
 					</div>
 					<div className="lessons-drawer-content__body">
 						{isLessonsLoading ? (
-							<Skeleton count={5} height={40}/>
+							<Skeleton count={5} height={40} />
 						) : (
 							lessons?.map((lesson: Lesson) => {
 								return (

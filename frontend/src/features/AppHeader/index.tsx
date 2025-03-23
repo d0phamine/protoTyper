@@ -9,10 +9,11 @@ import {
 import { SubButton } from "@/components"
 import { useNavigate } from "react-router-dom"
 
-import { featureStoreSlice } from "@/store/FeatureStore"
+import { toggleLessonsDrawerOpenAction } from "@/store/FeatureStore"
 import { useAppDispatch } from "@/store/hooks"
 
-import { LessonsDrawer } from "../LessonsDrawer"
+import { LessonsDrawer } from "@/features/LessonsDrawer"
+
 import "./index.scss"
 
 export const AppHeader: FC = () => {
@@ -29,11 +30,7 @@ export const AppHeader: FC = () => {
 				<SubButton
 					icon={<BookOpen />}
 					style={{ gap: 0 }}
-					onClick={() =>
-						dispatcher(
-							featureStoreSlice.actions.toggleLessonsDrawerOpenAction(),
-						)
-					}
+					onClick={() => dispatcher(toggleLessonsDrawerOpenAction())}
 				/>
 				<LessonsDrawer />
 			</div>

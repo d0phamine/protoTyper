@@ -9,7 +9,7 @@ import { toggleLessonsDrawerOpen, toggleThemeSwitcherOpen } from "./reducers"
 
 const initialState: IFeatureStore = {
 	lessonsDrawerOpen: false,
-	themeSwitcherOpen: false
+	themeSwitcherOpen: false,
 }
 
 export const featureStoreSlice = createAppSlice({
@@ -17,7 +17,7 @@ export const featureStoreSlice = createAppSlice({
 	initialState,
 	reducers: {
 		toggleLessonsDrawerOpenAction: toggleLessonsDrawerOpen,
-		toggleThemeSwitcherOpenAction: toggleThemeSwitcherOpen
+		toggleThemeSwitcherOpenAction: toggleThemeSwitcherOpen,
 	},
 })
 
@@ -34,6 +34,8 @@ const themeSwitcherOpen = createSelector(
 )
 
 const { reducer, actions } = featureStoreSlice
-export const { toggleLessonsDrawerOpenAction } = actions
-export const featureStoreSelectors = { lessonsDrawerOpen, themeSwitcherOpen}
+export const { toggleLessonsDrawerOpenAction, toggleThemeSwitcherOpenAction } =
+	actions
+export const featureStoreSelectors = { lessonsDrawerOpen, themeSwitcherOpen }
 export default reducer
+
