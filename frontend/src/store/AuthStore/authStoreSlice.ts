@@ -33,4 +33,3 @@ const { reducer, actions } = authStoreSlice
 export const { initAuthAction } = actions
 export const authStoreSelectors = { currentUser, isAuth }
 export default reducer
-

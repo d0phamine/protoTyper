@@ -3,8 +3,6 @@ import { FC, RefObject, useEffect, useRef } from "react"
 import { Check } from "@gravity-ui/icons"
 import { List, Modal } from "@gravity-ui/uikit"
 
-import { ListElement, ThemeBubbles } from "@/components"
-
 import { Theme } from "@/types/features"
 
 import { useGetThemesQuery } from "@/api"
@@ -21,6 +19,8 @@ import {
 	themeSwitcherSelectors,
 } from "@/store/ThemeSwitcher"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
+
+import { ListElement, ThemeBubbles } from "@/components"
 
 import "./index.scss"
 
@@ -115,4 +115,3 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 		</Modal>
 	)
 }
-

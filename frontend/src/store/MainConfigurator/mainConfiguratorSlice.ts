@@ -37,4 +37,3 @@ const { reducer, actions } = mainConfiguratorSlice
 export const { setWordModeAction } = actions
 export const mainConfiguratorSelectors = { selectWordMode }
 export default reducer
-

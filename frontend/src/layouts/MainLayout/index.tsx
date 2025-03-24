@@ -1,6 +1,6 @@
-import { FC, ReactNode, useEffect } from "react"
-
 import { AppFooter, AppHeader } from "@/features"
+
+import { FC, ReactNode, useEffect } from "react"
 
 import { initAuthAction } from "@/store/AuthStore"
 import { useAppDispatch } from "@/store/hooks"

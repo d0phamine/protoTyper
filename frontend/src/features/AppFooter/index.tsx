@@ -1,13 +1,14 @@
+import { ThemeSwitcher } from "@/features"
+
 import { FC } from "react"
 
 import { Palette, Tag } from "@gravity-ui/icons"
 
-import { SubButton } from "@/components"
-import { ThemeSwitcher } from "@/features"
-
 import { toggleThemeSwitcherOpenAction } from "@/store/FeatureStore"
 import { themeSwitcherSelectors } from "@/store/ThemeSwitcher"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
+
+import { SubButton } from "@/components"
 
 import "./index.scss"
 
@@ -31,4 +32,3 @@ export const AppFooter: FC = () => {
 		</div>
 	)
 }
-

@@ -32,4 +32,3 @@ export const CustomButton: FC<ICustomButtonProps> = ({
 		</div>
 	)
 }
-

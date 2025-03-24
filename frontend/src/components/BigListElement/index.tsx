@@ -33,4 +33,3 @@ export const BigListElement: FC<IBigListElementProps> = (props) => {
 		</div>
 	)
 }
-

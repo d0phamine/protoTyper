@@ -1,15 +1,15 @@
+import { Formik, FormikValues } from "formik"
+import * as Yup from "yup"
+
 import { FC } from "react"
 
 import { ArrowRightToSquare } from "@gravity-ui/icons"
 
-import { Formik, FormikValues } from "formik"
-import * as Yup from "yup"
-
 import "./index.scss"
 
-export const LoginForm:FC = () => {
-    return (
-        <Formik
+export const LoginForm: FC = () => {
+	return (
+		<Formik
 			initialValues={{ username: "", password: "" }}
 			validationSchema={Yup.object().shape({
 				username: Yup.string().required("Required"),
@@ -34,5 +34,5 @@ export const LoginForm:FC = () => {
 				)
 			}}
 		</Formik>
-    )
+	)
 }

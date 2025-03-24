@@ -1,14 +1,25 @@
+import { errorToastOptions, successToastOptions } from "@/hooks"
+import { Form, Formik } from "formik"
+import * as Yup from "yup"
+
 import { FC } from "react"
+import { useNavigate } from "react-router-dom"
+import { Slide, toast } from "react-toastify"
 
 import { PersonPlus } from "@gravity-ui/icons"
 
+import { UserCredentials } from "@/types/processes"
+
+import { useRegisterUserMutation } from "@/api"
+
 import { CustomButton, CustomInput } from "@/components"
-import { Form, Formik, FormikValues } from "formik"
-import * as Yup from "yup"
 
 import "./index.scss"
 
 export const RegistrationForm: FC = () => {
+	const [registerUser, { error }] = useRegisterUserMutation()
+	const navigate = useNavigate()
+
 	return (
 		<Formik
 			initialValues={{ username: "", password: "", confirmPassword: "" }}
@@ -19,9 +30,33 @@ export const RegistrationForm: FC = () => {
 					.oneOf([Yup.ref("password"), ""], "Passwords must match")
 					.required("Confirm Password is required"),
 			})}
-			onSubmit={(values: FormikValues, { setSubmitting }) => {
-				console.log(values, "values")
-				setSubmitting(false)
+			onSubmit={async ({ ...userData }, { setSubmitting }) => {
+				console.log(userData)
+				const credentials: UserCredentials = {
+					username: userData.username,
+					password: userData.password,
+				}
+				const toastId = toast.loading("Providing registration...", {
+					transition: Slide,
+				})
+				try {
+					await registerUser(credentials).unwrap()
+					toast.update(toastId, {
+						...successToastOptions,
+						render: "Successfully registered ✌️",
+						isLoading: false,
+					})
+				} catch {
+					console.log(error)
+					toast.update(toastId, {
+						...errorToastOptions,
+						render: `${error}`,
+						isLoading: false,
+					}) // ✅ Показываем ошибку
+				} finally {
+					navigate("/")
+					setSubmitting(false)
+				}
 			}}
 		>
 			{(props) => {
@@ -54,7 +89,7 @@ export const RegistrationForm: FC = () => {
 									}
 									errorMessage={
 										touched.username && errors.username
-											? "username is required"
+											? errors.username
 											: undefined
 									}
 									onChange={handleChange}
@@ -74,7 +109,7 @@ export const RegistrationForm: FC = () => {
 									}
 									errorMessage={
 										touched.password && errors.password
-											? "Password must be at least 8 characters"
+											? errors.password
 											: undefined
 									}
 								/>
@@ -95,7 +130,7 @@ export const RegistrationForm: FC = () => {
 									errorMessage={
 										touched.confirmPassword &&
 										errors.confirmPassword
-											? "Passwords must match"
+											? errors.confirmPassword
 											: undefined
 									}
 								/>
@@ -105,7 +140,7 @@ export const RegistrationForm: FC = () => {
 								size="l"
 								text="register"
 								disabled={
-									isSubmitting ||
+									isSubmitting &&
 									Object.keys(errors).length > 0
 								}
 								onClick={handleSubmit}
@@ -117,4 +152,3 @@ export const RegistrationForm: FC = () => {
 		</Formik>
 	)
 }
-

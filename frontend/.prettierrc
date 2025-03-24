@@ -12,7 +12,6 @@
 	"importOrder": [
 		"^react(.*)$",
 		"^@gravity-ui/(.*)$",
-		"<THIRD_PARTY_MODULES>",
 		"^@/assets",
 		"^@/styles",
 		"^@/types",
@@ -21,6 +20,7 @@
 		"^@/store/(.*)$",
 		"^@/features/(.*)$",
 		"^@/utils/(.*)$",
+		"^@/components",
 		"^@/components/(.*)$",
 		"^@/layouts/(.*)$",
 		"^@/pages/(.*)$",

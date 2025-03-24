@@ -29,4 +29,3 @@ export const SubButton: FC<subButtonProps> = (props) => {
 		</div>
 	)
 }
-

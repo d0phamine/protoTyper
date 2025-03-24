@@ -1,11 +1,10 @@
 import { StrictMode } from "react"
-
-import { ThemeProvider } from "@gravity-ui/uikit"
-
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import { HashRouter } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
+
+import { ThemeProvider } from "@gravity-ui/uikit"
 
 import { store } from "@/store/store"
 

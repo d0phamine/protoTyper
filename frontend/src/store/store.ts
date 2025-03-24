@@ -5,9 +5,10 @@ import { setupListeners } from "@reduxjs/toolkit/query"
 import { protoTyperApi, themeApi } from "@/api"
 
 import { featureStoreSlice } from "@/store/FeatureStore"
+import { lessonsStoreSlice } from "@/store/LessonsStore"
 import { mainConfiguratorSlice } from "@/store/MainConfigurator/"
 import { themeSwitcherSlice } from "@/store/ThemeSwitcher/"
-import { lessonsStoreSlice } from "@/store/LessonsStore"
+
 import { authStoreSlice } from "./AuthStore/authStoreSlice"
 
 const rootReducer = combineSlices(
@@ -46,4 +47,3 @@ export type AppThunk<ThunkReturnType = void> = ThunkAction<
 	unknown,
 	Action
 >
-

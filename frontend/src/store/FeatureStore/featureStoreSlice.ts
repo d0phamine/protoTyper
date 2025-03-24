@@ -38,4 +38,3 @@ export const { toggleLessonsDrawerOpenAction, toggleThemeSwitcherOpenAction } =
 	actions
 export const featureStoreSelectors = { lessonsDrawerOpen, themeSwitcherOpen }
 export default reducer
-

@@ -29,4 +29,3 @@ export const filterThemes: CaseReducer<
 > = (state, action) => {
 	state.themeFilter = action.payload
 }
-

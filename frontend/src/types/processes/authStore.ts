@@ -14,3 +14,6 @@ export interface UserCredentials {
 	password: string
 }
 
+export interface AuthResponse {
+	token: string
+}

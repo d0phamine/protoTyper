@@ -1,6 +1,33 @@
 import { useEffect, useRef, useState } from "react"
+import { Id, Slide, ToastOptions, toast } from "react-toastify"
 
-import { Id, Slide, toast } from "react-toastify"
+export const successToastOptions: ToastOptions = {
+	className: "styled-notifications-success",
+	position: "bottom-left",
+	autoClose: 5000,
+	hideProgressBar: false,
+	closeOnClick: true,
+	pauseOnHover: true,
+	draggable: true,
+	progress: undefined,
+	theme: "dark",
+	transition: Slide,
+	type: "success",
+}
+
+export const errorToastOptions: ToastOptions = {
+	className: "styled-notifications-error",
+	position: "bottom-left",
+	autoClose: 5000,
+	hideProgressBar: false,
+	closeOnClick: true,
+	pauseOnHover: true,
+	draggable: true,
+	progress: undefined,
+	theme: "dark",
+	transition: Slide,
+	type: "error",
+}
 
 const useLoadingToast = (isLoading: boolean, message: string) => {
 	const hasShownLoadingToast = useRef(false)
@@ -29,18 +56,7 @@ const useSuccessToast = (isSuccess: boolean, message: string) => {
 	const hasShownSuccessToast = useRef(false)
 	useEffect(() => {
 		if (isSuccess && !hasShownSuccessToast.current) {
-			toast.success(message, {
-				className: "styled-notifications-success",
-				position: "bottom-left",
-				autoClose: 5000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-				theme: "dark",
-				transition: Slide,
-			})
+			toast.success(message, successToastOptions)
 			hasShownSuccessToast.current = true // Устанавливаем флаг, чтобы не показывать снова
 		}
 	}, [isSuccess])
@@ -50,22 +66,10 @@ const useErrorToast = (isError: boolean, message: string) => {
 	const hasShownErrorToast = useRef(false)
 	useEffect(() => {
 		if (isError && !hasShownErrorToast.current) {
-			toast.error(message, {
-				className: "styled-notifications-error",
-				position: "bottom-left",
-				autoClose: 5000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-				theme: "dark",
-				transition: Slide,
-			})
+			toast.error(message, errorToastOptions)
 			hasShownErrorToast.current = true
 		}
 	}, [isError])
 }
 
 export const useToaster = { useErrorToast, useLoadingToast, useSuccessToast }
-

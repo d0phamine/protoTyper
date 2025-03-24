@@ -9,4 +9,3 @@ export const toggleThemeSwitcherOpen: CaseReducer<IFeatureStore> = (state) => {
 export const toggleLessonsDrawerOpen: CaseReducer<IFeatureStore> = (state) => {
 	state.lessonsDrawerOpen = !state.lessonsDrawerOpen
 }
-

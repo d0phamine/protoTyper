@@ -7,13 +7,13 @@ import {
 	Person,
 } from "@gravity-ui/icons"
 
-import { SubButton } from "@/components"
-
 import { authStoreSelectors } from "@/store/AuthStore"
 import { toggleLessonsDrawerOpenAction } from "@/store/FeatureStore"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
 import { LessonsDrawer } from "@/features/LessonsDrawer"
+
+import { SubButton } from "@/components"
 
 import "./index.scss"
 
@@ -49,4 +49,3 @@ export const AppHeader: FC = () => {
 		</div>
 	)
 }
-

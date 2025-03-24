@@ -1,18 +1,17 @@
-
 export interface apiSchema {
-    getText:getText
+	getText: getText
 
-    getLessons:getLessons
-    getLessonsStatistics:getLessonsStatistics
+	getLessons: getLessons
+	getLessonsStatistics: getLessonsStatistics
 
-    getLessonByName:getLessonByName
-    getLessonById:getLessonById
-    getLessonStatusByName: getLessonStatusByName
-    getLessonStatusByid : getLessonStatusById
+	getLessonByName: getLessonByName
+	getLessonById: getLessonById
+	getLessonStatusByName: getLessonStatusByName
+	getLessonStatusByid: getLessonStatusById
 
-    postLessonStatus:postLessonStatus
-    
-    getTranslationForWord:getTranslationForWord
+	postLessonStatus: postLessonStatus
+
+	getTranslationForWord: getTranslationForWord
 }
 
 /**
@@ -25,13 +24,13 @@ export interface apiSchema {
  */
 
 export interface getText {
-    id: number,
-    text: string,
+	id: number
+	text: string
 }
 
 export interface getLessons {
-    lessons: lesson[]
-    amount: number
+	lessons: lesson[]
+	amount: number
 }
 
 /**
@@ -39,7 +38,7 @@ export interface getLessons {
  */
 
 export interface getLessonByName {
-    lesson:lesson
+	lesson: lesson
 }
 
 /**
@@ -47,13 +46,13 @@ export interface getLessonByName {
  */
 
 export interface getLessonById {
-    lesson:lesson
+	lesson: lesson
 }
 
 export interface getLessonsStatistics {
-    successLessons: lesson[]
-    amountSuccessLessons: number
-    amountAllLessons: number
+	successLessons: lesson[]
+	amountSuccessLessons: number
+	amountAllLessons: number
 }
 
 /**
@@ -61,11 +60,11 @@ export interface getLessonsStatistics {
  */
 
 export interface getLessonStatusById {
-    id: number
-    name: string
-    percentage?: number
-    timing?: number
-    status: "success" | "fail" | "notchecked"
+	id: number
+	name: string
+	percentage?: number
+	timing?: number
+	status: "success" | "fail" | "notchecked"
 }
 
 /**
@@ -73,19 +72,19 @@ export interface getLessonStatusById {
  */
 
 export interface getLessonStatusByName {
-    id: number
-    name: string
-    percentage?: number
-    timing?: number
-    status: "success" | "fail" | "notchecked"
+	id: number
+	name: string
+	percentage?: number
+	timing?: number
+	status: "success" | "fail" | "notchecked"
 }
 
 export interface postLessonStatus {
-    id: number
-    name: string
-    percentage?: number
-    timing?: number
-    status: "success" | "fail" | "notchecked"
+	id: number
+	name: string
+	percentage?: number
+	timing?: number
+	status: "success" | "fail" | "notchecked"
 }
 
 /**
@@ -95,26 +94,25 @@ export interface postLessonStatus {
 //? Watch getText params(modificators)
 
 export type lesson = {
-    id: number
-    name: string
-    description: string
-    text: getText[]
-    timing?: number
-    percentage: number
-    language?:string
-    status: "success" | "fail" | "notchecked"
+	id: number
+	name: string
+	description: string
+	text: getText[]
+	timing?: number
+	percentage: number
+	language?: string
+	status: "success" | "fail" | "notchecked"
 }
-
 
 /**
  * @params word
- * 
+ *
  * prounciation - transription of a word
  */
 
 export interface getTranslationForWord {
-    word:string
-    translation: string
-    pronunciation: string
-    audio: AudioBuffer
+	word: string
+	translation: string
+	pronunciation: string
+	audio: AudioBuffer
 }

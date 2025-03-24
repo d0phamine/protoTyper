@@ -10,8 +10,18 @@ export const setToken = (builder: ActionReducerMapBuilder<IAuthStore>) => {
 			protoTyperApi.endpoints.loginUser.matchFulfilled(action) ||
 			protoTyperApi.endpoints.registerUser.matchFulfilled(action),
 		(state, action) => {
-			state.authToken = action.payload
-			state.isAuth = true
+			const token = action.payload?.token // ✅ Достаем токен из ответа
+
+			if (token) {
+				state.authToken = token
+				localStorage.setItem("userToken", token)
+				state.isAuth = true
+			} else {
+				console.error(
+					"Token is missing in the response:",
+					action.payload,
+				)
+			}
 		},
 	)
 }
@@ -24,4 +34,3 @@ export const initAuth: CaseReducer<IAuthStore> = (state) => {
 		state.isAuth = true
 	}
 }
-

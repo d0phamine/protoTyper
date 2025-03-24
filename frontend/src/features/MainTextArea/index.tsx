@@ -1,5 +1,4 @@
 import { FC, useEffect, useRef } from "react"
-
 import useTypingGame from "react-typing-game-hook"
 
 import "./index.scss"
@@ -102,4 +101,3 @@ export const MainTextArea: FC = () => {
 		</div>
 	)
 }
-

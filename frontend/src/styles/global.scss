@@ -61,12 +61,12 @@ body {
 	}
 }
 
-.Toastify__toast{
+.Toastify__toast {
 	background-color: var(--bg-color);
 	color: var(--sub-color);
 
-	.Toastify__toast-icon{
-		.Toastify__spinner{
+	.Toastify__toast-icon {
+		.Toastify__spinner {
 			border-color: var(--main-color) transparent transparent transparent;
 		}
 	}
@@ -76,7 +76,11 @@ body {
 	background-color: var(--bg-color);
 	color: var(--sub-color);
 
-	.Toastify__progress-bar--success {
+	.Toastify__progress-bar--bg {
+		background-color: var(--bg-color);
+	}
+
+	.Toastify__progress-bar {
 		background: var(--main-color);
 	}
 

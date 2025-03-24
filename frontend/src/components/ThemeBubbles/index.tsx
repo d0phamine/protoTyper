@@ -32,4 +32,3 @@ export const ThemeBubbles: FC<themeBubblesProps> = (props) => {
 		</div>
 	)
 }
-

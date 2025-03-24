@@ -1,6 +1,7 @@
+import { MainConfigurator, MainTextArea } from "@/features"
+
 import { FC } from "react"
 
-import { MainConfigurator, MainTextArea } from "@/features"
 import { MainLayout } from "@/layouts/MainLayout"
 
 import "./index.scss"

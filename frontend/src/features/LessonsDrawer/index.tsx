@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom"
 
 import { BookOpen } from "@gravity-ui/icons"
 
-import { BigListElement } from "@/components"
-
 import { Lesson } from "@/types/processes"
 
 import { useGetLessonsQuery } from "@/api"
@@ -17,6 +15,8 @@ import {
 	toggleLessonsDrawerOpenAction,
 } from "@/store/FeatureStore"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
+
+import { BigListElement } from "@/components"
 
 import "./index.scss"
 
@@ -67,4 +67,3 @@ export const LessonsDrawer: FC = () => {
 		</>
 	)
 }
-

@@ -40,4 +40,3 @@ export const MainConfigurator: FC = () => {
 		</div>
 	)
 }
-

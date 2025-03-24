@@ -3,16 +3,19 @@
 .login-wrapper {
 	display: flex;
 	flex-direction: column;
+	gap: rem(12);
+	min-width: rem(256);
 
 	&__header {
 		display: flex;
 		flex-direction: row;
 		gap: rem(6);
+		color: var(--sub-color);
 	}
 
-    &__form {
-        display: flex;
-        flex-direction: column;
-        gap: rem(6);
-    }
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: rem(6);
+	}
 }

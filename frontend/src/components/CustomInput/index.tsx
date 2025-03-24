@@ -7,7 +7,7 @@ import "./index.scss"
 
 interface ICustomInputProps {
 	placeholder?: string
-	name?:string
+	name?: string
 	value?: string
 	validationState?: "invalid"
 	hasClear?: boolean
@@ -50,4 +50,3 @@ export const CustomInput: FC<ICustomInputProps> = ({
 		</div>
 	)
 }
-

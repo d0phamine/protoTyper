@@ -24,4 +24,3 @@ export const ListElement: FC<IListElementProps> = (props) => {
 		</div>
 	)
 }
-

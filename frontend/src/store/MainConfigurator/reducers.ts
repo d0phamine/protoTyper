@@ -8,4 +8,3 @@ export const setWordMode: CaseReducer<
 > = (state, action) => {
 	state.textMode = action.payload
 }
-

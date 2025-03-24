@@ -1,4 +1,4 @@
 export interface IFeatureStore {
-    lessonsDrawerOpen: boolean
-    themeSwitcherOpen: boolean
+	lessonsDrawerOpen: boolean
+	themeSwitcherOpen: boolean
 }
