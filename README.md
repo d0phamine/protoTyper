@@ -9,39 +9,10 @@
 ```
 git clone --recurse-submodules https://github.com/d0phamine/protoTyper.git
 
-```
-
-#### Frontend
-
-Для настройки проекта для локальной разработки выолните следующие шаги:
-
-- создайте файл .env_dev в папке frontend (пример - .env-example)
-
-###### npm
-
-- Установите node js v22 (https://joshtronic.com/2024/05/26/ubuntu-nodejs-22-install/)
-
-- Установите зависмости для корректной работы ide
-
-```
-cd frontend
-
-npm install
-
-```
-
-- Запуститите проект
-
-```
-
-npm run dev
-
-```
 
 ###### docker
 
-- Для Linux:
-
+####### frontend [Подробнее -> ](frontend/README.md)
 ```
 
 sudo docker compose up -f frontend/docker/docker-compose-dev.yaml --build
@@ -56,17 +27,21 @@ make front-dev
 
 ```
 
-- Для Windows (docker desktop)
-
-```
-sudo docker-compose up -f frontend/docker/docker-compose-dev.yaml --build
+####### backend  [Подробнее ->](https://github.com/Pockemonchik/prototyper_api/blob/main/README.md)
 
 ```
 
-## Test and lint
-
-- Прогон линтеров:
+sudo docker compose up -f backend/docker-compose.yml --build
 
 ```
+
+или
+
+```
+
+make back-dev
+
+```
+
 
 ```
