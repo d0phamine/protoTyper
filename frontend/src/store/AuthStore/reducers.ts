@@ -26,11 +26,31 @@ export const setToken = (builder: ActionReducerMapBuilder<IAuthStore>) => {
 	)
 }
 
+export const setUser = (builder: ActionReducerMapBuilder<IAuthStore>) => {
+	builder.addMatcher(
+		(action) =>
+			protoTyperApi.endpoints.getUserProfile.matchFulfilled(action),
+		(state, action) => {
+			state.user = action.payload
+		},
+	)
+}
+
 export const initAuth: CaseReducer<IAuthStore> = (state) => {
 	const token = localStorage.getItem("userToken")
 
 	if (token) {
 		state.authToken = token
 		state.isAuth = true
+	}
+}
+
+export const logout: CaseReducer<IAuthStore> = (state) => {
+	const token = localStorage.getItem("userToken")
+
+	if (token) {
+		localStorage.removeItem("userToken")
+		state.authToken = null
+		state.isAuth = false
 	}
 }

@@ -9,7 +9,7 @@ import { lessonsStoreSlice } from "@/store/LessonsStore"
 import { mainConfiguratorSlice } from "@/store/MainConfigurator/"
 import { themeSwitcherSlice } from "@/store/ThemeSwitcher/"
 
-import { authStoreSlice } from "./AuthStore/authStoreSlice"
+import { authStoreSlice, initAuthAction } from "./AuthStore/authStoreSlice"
 
 const rootReducer = combineSlices(
 	mainConfiguratorSlice,
@@ -38,6 +38,8 @@ export const makeStore = (preloadedState?: Partial<RootState>) => {
 }
 
 export const store = makeStore()
+
+store.dispatch(initAuthAction())
 
 export type AppStore = typeof store
 export type AppDispatch = AppStore["dispatch"]

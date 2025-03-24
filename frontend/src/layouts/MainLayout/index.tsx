@@ -1,9 +1,6 @@
 import { AppFooter, AppHeader } from "@/features"
 
-import { FC, ReactNode, useEffect } from "react"
-
-import { initAuthAction } from "@/store/AuthStore"
-import { useAppDispatch } from "@/store/hooks"
+import { FC, ReactNode } from "react"
 
 import "./index.scss"
 
@@ -12,11 +9,6 @@ export interface ILayout {
 }
 
 export const MainLayout: FC<ILayout> = ({ children }) => {
-	const dispatcher = useAppDispatch()
-
-	useEffect(() => {
-		dispatcher(initAuthAction())
-	}, [])
 	return (
 		<>
 			<div className="layout-wrapper">

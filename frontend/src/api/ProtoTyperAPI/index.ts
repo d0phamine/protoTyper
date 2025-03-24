@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-import { AuthResponse, Lesson, UserCredentials } from "@/types/processes"
+import { AuthResponse, Lesson, User, UserCredentials } from "@/types/processes"
 
 import { RootState } from "@/store/store"
 
@@ -25,6 +25,9 @@ export const protoTyperApi = createApi({
 		getLessonById: builder.query<Lesson, number>({
 			query: (id) => "/lessons/" + id,
 		}),
+		getUserProfile: builder.query<User, void>({
+			query: () => "/users/profile",
+		}),
 		registerUser: builder.mutation<AuthResponse, UserCredentials>({
 			query: (userCredentials) => ({
 				url: "auth/registration",
@@ -45,6 +48,7 @@ export const protoTyperApi = createApi({
 export const {
 	useGetLessonsQuery,
 	useGetLessonByIdQuery,
+	useGetUserProfileQuery,
 	useLoginUserMutation,
 	useRegisterUserMutation,
 } = protoTyperApi

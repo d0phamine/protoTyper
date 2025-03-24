@@ -1,0 +1,44 @@
+@use "@/styles/functions.scss" as *;
+
+.user-mini-profile {
+	display: flex;
+	gap: rem(6);
+	padding: 0.5em 0.5em;
+	align-items: center;
+	line-height: 1;
+	font-size: rem(13);
+    cursor: pointer;
+
+	&__avatar {
+		height: rem(20);
+		width: rem(20);
+		border-radius: rem(36);
+		background-color: var(--sub-alt-color);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		color: var(--sub-color);
+		padding-left: rem(1);
+		transition: 0.125s;
+	}
+
+	&__username {
+		color: var(--sub-color);
+		transition: 0.125s;
+	}
+}
+
+.user-mini-profile:hover {
+
+	.user-mini-profile__username {
+		transition: 0.125s;
+		color: var(--text-color);
+	}
+
+	.user-mini-profile__avatar {
+		transition: 0.125s;
+		color: var(--main-color);
+	}
+}
+

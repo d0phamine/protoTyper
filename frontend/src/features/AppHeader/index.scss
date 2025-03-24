@@ -6,11 +6,23 @@
 	justify-content: space-between;
 	align-items: center;
 
+	svg {
+		width: rem(20);
+		height: rem(20);
+		color: var(--sub-color);
+	}
+
 	&__logo {
 		display: flex;
 		gap: rem(6);
 		align-items: center;
 		cursor: pointer;
+		padding: 0.25em 0.5em;
+
+		h2 {
+			line-height: 1;
+		}
+
 		svg {
 			width: rem(28);
 			height: rem(28);
@@ -18,15 +30,18 @@
 		}
 	}
 
-	&__menu {
+	&__nav-menu {
+		margin-right: auto;
+
+		.sub-button {
+			padding-bottom: 0;
+		}
+	}
+
+	&__service-menu {
 		display: flex;
 		align-items: center;
 		// gap: rem(12);
-		svg {
-			width: rem(20);
-			height: rem(20);
-			color: var(--sub-color);
-		}
 	}
 
 	@media only screen and (max-width: calc(1024px + 5rem)) {
@@ -41,3 +56,4 @@
 		}
 	}
 }
+

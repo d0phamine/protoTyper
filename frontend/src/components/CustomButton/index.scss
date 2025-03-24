@@ -7,6 +7,7 @@
 		border-radius: rem(8) !important;
 		color: var(--sub-color);
 		transition: 0.3s;
+		padding: 0 0.5em;
 
 		.g-button__text {
 			display: flex;
@@ -31,6 +32,9 @@
 }
 
 .custom-button:hover {
+	svg {
+		color: var(--text-color);
+	}
 	.g-button {
 		cursor: pointer;
 		transition: 0.3s;
