@@ -10,9 +10,9 @@
 git clone --recurse-submodules https://github.com/d0phamine/protoTyper.git
 ```
 
-###### docker
+#### docker
 
-####### frontend [Подробнее -> ](frontend/README.md)
+##### frontend [Подробнее -> ](frontend/README.md)
 
 ```
 
@@ -28,7 +28,7 @@ make front-dev
 
 ```
 
-####### backend [Подробнее ->](https://github.com/Pockemonchik/prototyper_api/blob/main/README.md)
+##### backend [Подробнее ->](https://github.com/Pockemonchik/prototyper_api/blob/main/README.md)
 
 ```
 
