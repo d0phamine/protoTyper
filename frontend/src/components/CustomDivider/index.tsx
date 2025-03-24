@@ -17,4 +17,3 @@ export const CustomDivider: FC<ICustomDividerProps> = ({
 		</div>
 	)
 }
-

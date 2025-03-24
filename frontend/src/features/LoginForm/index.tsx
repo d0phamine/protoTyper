@@ -1,5 +1,8 @@
+import { errorToastOptions, successToastOptions } from "@/hooks"
+
 import { FC } from "react"
 import { IoLogoGoogle } from "react-icons/io5"
+import { useNavigate } from "react-router-dom"
 import { Slide, toast } from "react-toastify"
 
 import { ArrowRightToSquare } from "@gravity-ui/icons"
@@ -7,16 +10,16 @@ import { ArrowRightToSquare } from "@gravity-ui/icons"
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
 
+import { UserCredentials } from "@/types/processes"
+
+import { useLoginUserMutation } from "@/api"
+
 import { CustomButton, CustomDivider, CustomInput } from "@/components"
 
 import "./index.scss"
-import { UserCredentials } from "@/types/processes"
-import { useLoginUserMutation } from "@/api"
-import { useNavigate } from "react-router-dom"
-import { errorToastOptions, successToastOptions } from "@/hooks"
 
 export const LoginForm: FC = () => {
-	const [loginUser, {error}] = useLoginUserMutation()
+	const [loginUser, { error }] = useLoginUserMutation()
 	const navigate = useNavigate()
 
 	return (
@@ -28,9 +31,9 @@ export const LoginForm: FC = () => {
 			})}
 			onSubmit={async ({ ...userData }, { setSubmitting }) => {
 				console.log(userData, "values")
-				const credentials:UserCredentials = {
+				const credentials: UserCredentials = {
 					username: userData.username,
-					password: userData.password
+					password: userData.password,
 				}
 
 				const toastId = toast.loading("Providing sign in", {

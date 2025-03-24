@@ -36,4 +36,3 @@ export const NotFoundPage: FC = () => {
 		</MainLayout>
 	)
 }
-
