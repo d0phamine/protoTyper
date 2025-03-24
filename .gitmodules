@@ -1,3 +1,3 @@
-[submodule "prototyper_api"]
-	path = prototyper_api
+[submodule "backend"]
+	path = backend
 	url = https://github.com/Pockemonchik/prototyper_api.git
