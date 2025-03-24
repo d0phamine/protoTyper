@@ -1,0 +1,16 @@
+@use "@/styles/functions.scss" as *;
+
+.custom-divider {
+	width: 100%;
+	display: flex;
+	gap: rem(12);
+	align-items: center;
+
+	&__line {
+        width: 100%;
+		height: rem(4);
+		border-radius: rem(2);
+		background-color: var(--sub-alt-color);
+	}
+}
+

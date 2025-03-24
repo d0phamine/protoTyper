@@ -1,0 +1,19 @@
+@use "@/styles/functions.scss" as *;
+
+.not-found-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: rem(12);
+
+    &__text {
+        max-width: 380px;
+        text-align: center;
+        color: var(--sub-color);
+
+        h1 {
+            color: var(--main-color);
+        }
+    }
+}

@@ -12,6 +12,7 @@
 	"importOrder": [
 		"^react(.*)$",
 		"^@gravity-ui/(.*)$",
+		"^[a-zA-Z]",
 		"^@/assets",
 		"^@/styles",
 		"^@/types",

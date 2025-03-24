@@ -9,7 +9,7 @@ import "./index.scss"
 export const AuthPage: FC = () => {
 	return (
 		<MainLayout>
-			<div className="auth-page full-width">
+			<div className="auth-page content">
 				<div className="auth-page__registration-block">
 					<RegistrationForm />
 				</div>

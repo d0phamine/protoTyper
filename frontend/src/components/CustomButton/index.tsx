@@ -5,7 +5,7 @@ import { Button } from "@gravity-ui/uikit"
 import "./index.scss"
 
 interface ICustomButtonProps {
-	text: string
+	text?: string
 	icon?: React.ReactNode
 	size?: "xs" | "s" | "m" | "l" | "xl"
 	disabled?: boolean

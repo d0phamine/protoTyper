@@ -1,12 +1,13 @@
 import { errorToastOptions, successToastOptions } from "@/hooks"
-import { Form, Formik } from "formik"
-import * as Yup from "yup"
 
 import { FC } from "react"
 import { useNavigate } from "react-router-dom"
 import { Slide, toast } from "react-toastify"
 
 import { PersonPlus } from "@gravity-ui/icons"
+
+import { Form, Formik } from "formik"
+import * as Yup from "yup"
 
 import { UserCredentials } from "@/types/processes"
 
@@ -40,7 +41,7 @@ export const RegistrationForm: FC = () => {
 					transition: Slide,
 				})
 				try {
-					await registerUser(credentials).unwrap()
+					await registerUser(credentials)
 					toast.update(toastId, {
 						...successToastOptions,
 						render: "Successfully registered ✌️",
@@ -54,8 +55,8 @@ export const RegistrationForm: FC = () => {
 						isLoading: false,
 					}) // ✅ Показываем ошибку
 				} finally {
-					navigate("/")
 					setSubmitting(false)
+					navigate("/")
 				}
 			}}
 		>
@@ -138,7 +139,7 @@ export const RegistrationForm: FC = () => {
 							<CustomButton
 								icon={<PersonPlus />}
 								size="l"
-								text="register"
+								text="sign up"
 								disabled={
 									isSubmitting &&
 									Object.keys(errors).length > 0
