@@ -13,6 +13,7 @@
 	"dependencies": {
 		"@ant-design/v5-patch-for-react-19": "^1.0.3",
 		"@fontsource-variable/geist-mono": "^5.2.5",
+		"@gravity-ui/icons": "^2.13.0",
 		"@reduxjs/toolkit": "^2.6.0",
 		"antd": "^5.24.5",
 		"formik": "^2.4.6",
