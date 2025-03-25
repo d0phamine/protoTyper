@@ -41,15 +41,15 @@ export const LoginForm: FC = () => {
 				})
 
 				try {
-					await loginUser(credentials).unwrap()
+					const result = await loginUser(credentials).unwrap()
 					toast.update(toastId, {
 						...successToastOptions,
 						render: "Successfully signed in ✌️",
 						isLoading: false,
 					})
-					console.log(error)
-				} catch {
-					console.log(error)
+					console.log(result, "result")
+				} catch (e) {
+					console.log(e)
 					toast.update(toastId, {
 						...errorToastOptions,
 						render: `${error}`,
@@ -126,7 +126,11 @@ export const LoginForm: FC = () => {
 								onClick={handleSubmit}
 							/>
 							<CustomDivider content="or" />
-							<CustomButton icon={<IoLogoGoogle />} size="large" block/>
+							<CustomButton
+								icon={<IoLogoGoogle />}
+								size="large"
+								block
+							/>
 						</div>
 					</Form>
 				)
