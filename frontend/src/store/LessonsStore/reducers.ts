@@ -1,6 +1,10 @@
-import { ActionReducerMapBuilder } from "@reduxjs/toolkit"
+import {
+	ActionReducerMapBuilder,
+	CaseReducer,
+	PayloadAction,
+} from "@reduxjs/toolkit"
 
-import { ILessonsStore, Lesson } from "@/types/processes"
+import { ILessonsStore, Lesson, LessonStep } from "@/types/processes"
 
 import { protoTyperApi } from "@/api"
 
@@ -22,4 +26,11 @@ export const setCurrentLesson = (
 			state.currentLesson = action.payload as Lesson
 		},
 	)
+}
+
+export const setCurrentStep: CaseReducer<
+	ILessonsStore,
+	PayloadAction<LessonStep>
+> = (state, action) => {
+	state.currentStep = action.payload
 }

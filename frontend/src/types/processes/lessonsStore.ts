@@ -1,6 +1,7 @@
 export interface ILessonsStore {
 	lessons: Lesson[] | null
 	currentLesson: Lesson | null
+	currentStep: LessonStep | null
 }
 
 export interface Lesson {

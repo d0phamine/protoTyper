@@ -6,6 +6,8 @@ import { ToastContainer } from "react-toastify"
 
 import { ThemeProvider } from "@gravity-ui/uikit"
 
+import { ConfigProvider, theme } from "antd"
+
 import { store } from "@/store/store"
 
 import { Router } from "./router"
@@ -14,12 +16,26 @@ import "./styles/global.scss"
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<HashRouter>
-			<ThemeProvider>
-				<Provider store={store}>
-					<Router />
-					<ToastContainer position="bottom-left" autoClose={2500} />
-				</Provider>
-			</ThemeProvider>
+			<ConfigProvider
+				theme={{
+					algorithm: theme.darkAlgorithm,
+
+					token: {
+						// Seed Token
+						colorPrimary: "var(--main-color)",
+					},
+				}}
+			>
+				<ThemeProvider>
+					<Provider store={store}>
+						<Router />
+						<ToastContainer
+							position="bottom-left"
+							autoClose={2500}
+						/>
+					</Provider>
+				</ThemeProvider>
+			</ConfigProvider>
 		</HashRouter>
 	</StrictMode>,
 )

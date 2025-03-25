@@ -5,17 +5,20 @@ import { ILessonsStore } from "@/types/processes"
 import { createAppSlice } from "@/store/createAppSlice"
 import { RootState } from "@/store/store"
 
-import { setCurrentLesson, setLessons } from "./reducers"
+import { setCurrentLesson, setCurrentStep, setLessons } from "./reducers"
 
 const initialState: ILessonsStore = {
 	lessons: [],
 	currentLesson: null,
+	currentStep: null,
 }
 
 export const lessonsStoreSlice = createAppSlice({
 	name: "lessonsStore",
 	initialState,
-	reducers: {},
+	reducers: {
+		setCurrentStep: setCurrentStep,
+	},
 	extraReducers: (builder) => {
 		setLessons(builder)
 		setCurrentLesson(builder)
@@ -29,6 +32,11 @@ const currentLesson = createSelector(
 	(state) => state.currentLesson,
 )
 
+const currentStep = createSelector(
+	[selectLessonsStore],
+	(state) => state.currentStep,
+)
+
 const { reducer } = lessonsStoreSlice
-export const lessonsStoreSelectors = { currentLesson }
+export const lessonsStoreSelectors = { currentLesson, currentStep }
 export default reducer

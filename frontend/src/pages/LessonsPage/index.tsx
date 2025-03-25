@@ -15,6 +15,7 @@ import "./index.scss"
 
 export const LessonsPage: FC = () => {
 	const { id } = useParams<{ id: string }>()
+
 	const {
 		data: lesson,
 		isLoading,
@@ -35,7 +36,16 @@ export const LessonsPage: FC = () => {
 	return (
 		<MainLayout>
 			<div className="lessons-page content-grid full-width">
-				<div>{selector.currentLesson?.name}</div>
+				{/* <div>{selector.currentLesson?.name}</div> */}
+				<div className="lessons-page__lesson-info">
+					<div className="lesson-info-description">
+						<h4>{selector.currentLesson?.name}</h4>
+						<p>{selector.currentLesson?.description}</p>
+						<p>language: {selector.currentLesson?.language}</p>
+					</div>
+					<div className="lesson-info-progress">
+					</div>
+				</div>
 				<MainTextArea />
 			</div>
 		</MainLayout>

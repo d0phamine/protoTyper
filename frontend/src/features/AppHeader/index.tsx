@@ -10,7 +10,7 @@ import {
 
 import { useGetUserProfileQuery } from "@/api"
 
-import { authStoreSelectors, logoutAction } from "@/store/AuthStore"
+import { authStoreSelectors, logoutThunk } from "@/store/AuthStore"
 import { toggleLessonsDrawerOpenAction } from "@/store/FeatureStore"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
@@ -39,6 +39,7 @@ export const AppHeader: FC = () => {
 			</div>
 			<div className="app-header__nav-menu">
 				<SubButton
+					customClass="pb-0"
 					icon={<BookOpen />}
 					style={{ gap: 0 }}
 					onClick={() => dispatcher(toggleLessonsDrawerOpenAction())}
@@ -48,16 +49,19 @@ export const AppHeader: FC = () => {
 				{selector.isAuth && userProfile ? (
 					<>
 						<UserMiniProfile
+							customClass="pb-0"
 							username={userProfile ? userProfile?.username : ""}
 						/>
 						<SubButton
+							customClass="pb-0"
 							icon={<ArrowRightFromSquare />}
 							style={{ gap: 0 }}
-							onClick={() => dispatcher(logoutAction())}
+							onClick={() => dispatcher(logoutThunk())}
 						/>
 					</>
 				) : (
 					<SubButton
+						customClass="pb-0"
 						icon={<Person />}
 						style={{ gap: 0 }}
 						onClick={() => navigate("/auth")}

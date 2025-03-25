@@ -2,9 +2,12 @@
 
 .app-header {
 	display: flex;
-	grid-column: content;
 	justify-content: space-between;
 	align-items: center;
+
+	.pb-0 {
+		padding-bottom: 0;
+	}
 
 	svg {
 		width: rem(20);
@@ -17,7 +20,7 @@
 		gap: rem(6);
 		align-items: center;
 		cursor: pointer;
-		padding: 0.25em 0.5em;
+		padding: 0.25em 0.5em 0.25em 0;
 
 		h2 {
 			line-height: 1;
@@ -32,10 +35,6 @@
 
 	&__nav-menu {
 		margin-right: auto;
-
-		.sub-button {
-			padding-bottom: 0;
-		}
 	}
 
 	&__service-menu {

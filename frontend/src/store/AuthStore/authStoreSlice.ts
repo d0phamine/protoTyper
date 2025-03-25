@@ -1,9 +1,11 @@
-import { createSelector } from "@reduxjs/toolkit"
+import { createSelector, createAsyncThunk } from "@reduxjs/toolkit"
 
 import { IAuthStore } from "@/types/processes"
 
 import { createAppSlice } from "@/store/createAppSlice"
 import { RootState } from "@/store/store"
+
+import { protoTyperApi } from "@/api"
 
 import { initAuth, logout, setToken, setUser } from "./reducers"
 
@@ -25,6 +27,14 @@ export const authStoreSlice = createAppSlice({
 		setUser(builder)
 	},
 })
+
+export const logoutThunk = createAsyncThunk(
+	"auth/logout",
+	async (_, { dispatch }) => {
+		dispatch(logoutAction()) // Очищаем стейт авторизации
+		dispatch(protoTyperApi.util.resetApiState()) // Очищаем кеш профиля
+	}
+)
 
 const selectAuthStore = (state: RootState) => state.authStore
 
