@@ -1,10 +1,12 @@
 @use "@/styles/functions.scss" as *;
 
 .admin-page {
-    display: flex;
-  
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+	overflow: hidden;
+	padding-top: rem(24);
+	padding-bottom: rem(24);
+	display: grid;
+    grid-template-rows: 0.5fr auto 1fr;
 
 
 }
