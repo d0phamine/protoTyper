@@ -1,6 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-import { AuthResponse, Lesson, User, UserCredentials } from "@/types/processes"
+import {
+	AuthResponse,
+	Lesson,
+	User,
+	UserAdmin,
+	UserCredentials,
+} from "@/types/processes"
 
 import { RootState } from "@/store/store"
 
@@ -28,6 +34,9 @@ export const protoTyperApi = createApi({
 		getUserProfile: builder.query<User, void>({
 			query: () => "/users/profile",
 		}),
+		getUsersAdmin: builder.query<UserAdmin[], void>({
+			query: () => "/users",
+		}),
 		registerUser: builder.mutation<AuthResponse, UserCredentials>({
 			query: (userCredentials) => ({
 				url: "auth/registration",
@@ -49,6 +58,7 @@ export const {
 	useGetLessonsQuery,
 	useGetLessonByIdQuery,
 	useGetUserProfileQuery,
+	useGetUsersAdminQuery,
 	useLoginUserMutation,
 	useRegisterUserMutation,
 } = protoTyperApi
