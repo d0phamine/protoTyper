@@ -1,7 +1,13 @@
 import { FC } from "react"
 import { Route, Routes } from "react-router-dom"
 
-import { AuthPage, LessonsPage, MainPage, NotFoundPage } from "./pages"
+import {
+	AdminPage,
+	AuthPage,
+	LessonsPage,
+	MainPage,
+	NotFoundPage,
+} from "./pages"
 import { authStoreSelectors } from "./store/AuthStore"
 import { useAppSelector } from "./store/hooks"
 
@@ -16,6 +22,10 @@ export const Router: FC = () => {
 			<Route
 				path="/auth"
 				element={selector.isAuth ? <NotFoundPage /> : <AuthPage />}
+			/>
+			<Route
+				path="/admin"
+				element={selector.isAuth ? <AdminPage /> : <NotFoundPage />}
 			/>
 		</Routes>
 	)
