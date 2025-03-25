@@ -1,31 +1,38 @@
 @use "@/styles/functions.scss" as *;
 
 .custom-input {
-	.g-text-input {
-        transition: 0.5s;
-		.g-text-input__content {
-			background-color: var(--sub-alt-color);
-			border-radius: rem(8);
-			border: none;
+	.ant-input-affix-wrapper {
+		background-color: var(--sub-alt-color);
+		border-color: transparent;
+		border-width: 2px;
+		transition: 0.3s;
 
-			.g-text-input__control::placeholder {
-				color: var(--sub-color);
-			}
-		}
-
-		.g-outer-additional-content__error {
-			font-size: rem(10);
-			color: var(--error-color);
-			margin-left: rem(6);
+		.ant-input {
+			color: var(--text-color);
 		}
 	}
 
-	.g-text-input.g-text-input_state_error {
-		caret-color: var(--error-color);
-		.g-text-input__content {
-			transition: 0.5s;
-			border: 1px solid var(--error-color);
-		}
+	.ant-input-borderless{
+		background-color: transparent;
+	}
+
+	.ant-input-outlined:hover {
+		transition: 0.3s;
+		border-color: var(--sub-color);
+		border-width: 2px;
+	}
+
+	.ant-input-outlined:focus-within {
+		transition: 0.3s;
+		box-shadow: unset;
+		border-color: var(--sub-color);
+	}
+
+	.ant-input-outlined.ant-input-status-error:not(.ant-input-disabled){
+		transition: 0.3s;
+		background: unset;
+		border-width: 2px;
+		border-color: var(--error-color);
 	}
 }
 

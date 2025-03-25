@@ -41,12 +41,13 @@ export const LoginForm: FC = () => {
 				})
 
 				try {
-					await loginUser(credentials)
+					await loginUser(credentials).unwrap()
 					toast.update(toastId, {
 						...successToastOptions,
 						render: "Successfully signed in ✌️",
 						isLoading: false,
 					})
+					console.log(error)
 				} catch {
 					console.log(error)
 					toast.update(toastId, {
@@ -81,20 +82,19 @@ export const LoginForm: FC = () => {
 									placeholder="username"
 									name="username"
 									hasClear
-									size="l"
 									value={values.username}
 									validationState={
 										touched.username && errors.username
-											? "invalid"
-											: undefined
-									}
-									errorMessage={
-										touched.username && errors.username
-											? errors.username
+											? "error"
 											: undefined
 									}
 									onChange={handleChange}
 								/>
+								{touched.username && errors.username ? (
+									<p className="form-error">
+										{errors.username}
+									</p>
+								) : null}
 								<CustomInput
 									placeholder="password"
 									name="password"
@@ -102,31 +102,31 @@ export const LoginForm: FC = () => {
 									value={values.password}
 									hasClear
 									type="password"
-									size="l"
 									validationState={
 										touched.password && errors.password
-											? "invalid"
-											: undefined
-									}
-									errorMessage={
-										touched.password && errors.password
-											? errors.password
+											? "error"
 											: undefined
 									}
 								/>
+								{touched.password && errors.password ? (
+									<p className="form-error">
+										{errors.password}
+									</p>
+								) : null}
 							</div>
 							<CustomButton
 								icon={<ArrowRightToSquare />}
-								size="l"
+								size="large"
 								text="sign in"
 								disabled={
-									isSubmitting &&
+									isSubmitting ||
 									Object.keys(errors).length > 0
 								}
+								block
 								onClick={handleSubmit}
 							/>
 							<CustomDivider content="or" />
-							<CustomButton icon={<IoLogoGoogle />} size="l" />
+							<CustomButton icon={<IoLogoGoogle />} size="large" block/>
 						</div>
 					</Form>
 				)

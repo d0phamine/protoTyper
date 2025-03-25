@@ -7,7 +7,6 @@
 	grid-gap: rem(8);
 	align-items: center;
 	padding: rem(8) rem(16);
-	transition: 0.125s;
 
 	&__title {
 		font-size: rem(12);
@@ -28,19 +27,6 @@
 	}
 }
 
-.g-list {
-	&__items {
-		.g-list__item_active {
-			.list-element {
-				transition: 0.125s;
-				background-color: var(--text-color);
-				&__title {
-					color: var(--bg-color);
-				}
-			}
-		}
-	}
-}
 
 .list-element.active {
 	background-color: var(--text-color);
@@ -49,13 +35,12 @@
 	}
 }
 
-// .list-element:hover {
-// 	transition: 0.125s;
-// 	cursor: pointer;
-// 	background-color: var(--text-color);
+.list-element:hover {
+	cursor: pointer;
+	background-color: var(--text-color);
 
-// 	.list-element__title {
-// 		color: var(--bg-color);
-// 	}
-// }
+	.list-element__title {
+		color: var(--bg-color);
+	}
+}
 

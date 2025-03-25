@@ -11,6 +11,7 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
+		"@ant-design/v5-patch-for-react-19": "^1.0.3",
 		"@fontsource-variable/geist-mono": "^5.2.5",
 		"@gravity-ui/uikit": "^7.5.0",
 		"@reduxjs/toolkit": "^2.6.0",

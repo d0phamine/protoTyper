@@ -1,45 +1,27 @@
 @use "@/styles/functions.scss" as *;
 
 .custom-button {
-	.g-button {
-		width: 100%;
-		background-color: var(--sub-alt-color);
-		border-radius: rem(8) !important;
+	.ant-btn-color-default {
 		color: var(--sub-color);
-		transition: 0.3s;
-		padding: 0 0.5em;
-
-		.g-button__text {
-			display: flex;
-			align-items: center;
-			gap: rem(6);
-		}
+		box-shadow: unset;
+	}
+	.ant-btn {
+		background-color: var(--sub-alt-color);
+		border-width: 2px;
+		border-color: transparent;
 	}
 }
 
 .custom-button.disabled {
-	.g-button {
-		opacity: 0.5;
-	}
+	opacity: 0.6;
 }
 
-.custom-button.disabled:hover {
-	.g-button {
-		cursor: default;
-		background-color: var(--sub-alt-color);
-		color: var(--sub-color);
-	}
+.ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover {
+	background-color: var(--sub-color);
+	border-color: transparent;
+	color: var(--text-color);
 }
 
 .custom-button:hover {
-	svg {
-		color: var(--text-color);
-	}
-	.g-button {
-		cursor: pointer;
-		transition: 0.3s;
-		background-color: var(--sub-color);
-		color: var(--text-color);
-	}
 }
 

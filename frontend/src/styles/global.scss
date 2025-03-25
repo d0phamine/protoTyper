@@ -112,6 +112,13 @@ body {
 	padding: 12px;
 }
 
+.form-error {
+	font-size: rem(10);
+	color: var(--error-color);
+	line-height: 1;
+	padding-left: rem(4);
+}
+
 .react-loading-skeleton {
 	--base-color: var(--bg-color);
 	--highlight-color: var(--sub-color);

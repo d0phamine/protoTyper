@@ -41,7 +41,7 @@ export const RegistrationForm: FC = () => {
 					transition: Slide,
 				})
 				try {
-					await registerUser(credentials)
+					await registerUser(credentials).unwrap()
 					toast.update(toastId, {
 						...successToastOptions,
 						render: "Successfully registered ✌️",
@@ -81,20 +81,19 @@ export const RegistrationForm: FC = () => {
 									placeholder="username"
 									name="username"
 									hasClear
-									size="l"
 									value={values.username}
 									validationState={
 										touched.username && errors.username
-											? "invalid"
-											: undefined
-									}
-									errorMessage={
-										touched.username && errors.username
-											? errors.username
+											? "error"
 											: undefined
 									}
 									onChange={handleChange}
 								/>
+								{touched.username && errors.username ? (
+									<p className="form-error">
+										{errors.username}
+									</p>
+								) : null}
 								<CustomInput
 									placeholder="password"
 									name="password"
@@ -102,18 +101,17 @@ export const RegistrationForm: FC = () => {
 									value={values.password}
 									hasClear
 									type="password"
-									size="l"
 									validationState={
 										touched.password && errors.password
-											? "invalid"
-											: undefined
-									}
-									errorMessage={
-										touched.password && errors.password
-											? errors.password
+											? "error"
 											: undefined
 									}
 								/>
+								{touched.password && errors.password ? (
+									<p className="form-error">
+										{errors.password}
+									</p>
+								) : null}
 								<CustomInput
 									placeholder="confirm password"
 									name="confirmPassword"
@@ -121,29 +119,29 @@ export const RegistrationForm: FC = () => {
 									value={values.confirmPassword}
 									hasClear
 									type="password"
-									size="l"
 									validationState={
 										touched.confirmPassword &&
 										errors.confirmPassword
-											? "invalid"
-											: undefined
-									}
-									errorMessage={
-										touched.confirmPassword &&
-										errors.confirmPassword
-											? errors.confirmPassword
+											? "error"
 											: undefined
 									}
 								/>
+								{touched.confirmPassword &&
+								errors.confirmPassword ? (
+									<p className="form-error">
+										{errors.confirmPassword}
+									</p>
+								) : null}
 							</div>
 							<CustomButton
 								icon={<PersonPlus />}
-								size="l"
+								size="large"
 								text="sign up"
 								disabled={
-									isSubmitting &&
+									isSubmitting ||
 									Object.keys(errors).length > 0
 								}
+								block
 								onClick={handleSubmit}
 							/>
 						</div>

@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, Ref } from "react"
 
 import "./index.scss"
 
@@ -8,6 +8,7 @@ export interface IListElementProps {
 	endContent?: ReactNode
 	onClick?: () => void
 	active?: boolean
+	ref?:Ref<HTMLDivElement>
 }
 
 export const ListElement: FC<IListElementProps> = (props) => {
@@ -15,6 +16,7 @@ export const ListElement: FC<IListElementProps> = (props) => {
 		<div
 			className={`${props.active ? "list-element active" : "list-element"}`}
 			onClick={props.onClick}
+			ref={props.ref}
 		>
 			<div className="list-element__start-content">
 				{props.startContent}

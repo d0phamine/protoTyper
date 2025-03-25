@@ -1,10 +1,10 @@
+import "@ant-design/v5-patch-for-react-19"
+
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import { HashRouter } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
-
-import { ThemeProvider } from "@gravity-ui/uikit"
 
 import { ConfigProvider, theme } from "antd"
 
@@ -23,18 +23,14 @@ createRoot(document.getElementById("root")!).render(
 					token: {
 						// Seed Token
 						colorPrimary: "var(--main-color)",
+						fontFamily: "Geist Mono Variable",
 					},
 				}}
 			>
-				<ThemeProvider>
-					<Provider store={store}>
-						<Router />
-						<ToastContainer
-							position="bottom-left"
-							autoClose={2500}
-						/>
-					</Provider>
-				</ThemeProvider>
+				<Provider store={store}>
+					<Router />
+					<ToastContainer position="bottom-left" autoClose={2500} />
+				</Provider>
 			</ConfigProvider>
 		</HashRouter>
 	</StrictMode>,

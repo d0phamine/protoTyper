@@ -1,7 +1,10 @@
-import { FC, RefObject, useEffect, useRef } from "react"
+import { useFilteredThemes } from "@/hooks"
+
+import { ChangeEvent, FC, RefObject, useEffect, useRef } from "react"
 
 import { Check } from "@gravity-ui/icons"
-import { List, Modal } from "@gravity-ui/uikit"
+
+import { Modal } from "antd"
 
 import { Theme } from "@/types/features"
 
@@ -20,7 +23,7 @@ import {
 } from "@/store/ThemeSwitcher"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
-import { ListElement, ThemeBubbles } from "@/components"
+import { CustomInput, ListElement, ThemeBubbles } from "@/components"
 
 import "./index.scss"
 
@@ -28,8 +31,8 @@ export interface IThemeSwitcherProps {
 	propContainer?: RefObject<HTMLDivElement | null>
 }
 
-export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
-	const inputRef = useRef<List<Theme>>(null)
+export const ThemeSwitcher: FC<IThemeSwitcherProps> = () => {
+	const activeElement = useRef<HTMLDivElement>(null)
 
 	const dispatcher = useAppDispatch()
 	const selector = {
@@ -45,7 +48,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 
 	const { data: themes } = useGetThemesQuery()
 
-	// const filteredThemes = useFilteredThemes(themes, selector.themeFilter)
+	const filteredThemes = useFilteredThemes(themes, selector.themeFilter)
 
 	useEffect(() => {
 		dispatcher(initCurrentThemeAction())
@@ -71,46 +74,65 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 		<Modal
 			className="theme-switcher"
 			open={selector.themeSwitcherOpen}
-			onOpenChange={() => dispatcher(toggleThemeSwitcherOpenAction())}
-			onTransitionInComplete={() => {
-				inputRef.current?.activateItem(selector.activeThemeIndex)
-				inputRef.current?.refFilter.current.focus()
+			onCancel={() => dispatcher(toggleThemeSwitcherOpenAction())}
+			afterOpenChange={() => {
+				activeElement.current?.scrollIntoView({
+					behavior: "smooth", // Плавный скролл
+					block: "center", // Прокрутка так, чтобы элемент был в центре
+				})
 			}}
-			onTransitionOutComplete={() => dispatcher(themeFilterAction(""))}
-			container={props.propContainer?.current || undefined}
+			afterClose={() => dispatcher(themeFilterAction(""))}
+			closable={false}
+			footer={false}
 		>
 			<div className="theme-switcher__content">
-				<List
-					items={themes && themes.map((theme: Theme) => theme)}
-					renderItem={(item) => {
-						return (
-							<ListElement
-								key={item.name}
-								title={item.name}
-								active={
-									item.name === selector.currentTheme
-										? true
-										: false
-								}
-								startContent={
-									item.name === selector.currentTheme ? (
-										<Check />
-									) : null
-								}
-								endContent={<ThemeBubbles theme={item} />}
-							/>
-						)
-					}}
-					filterItem={(filter) => (item) =>
-						item.name.includes(filter)
-					}
-					filterPlaceholder={"Search..."}
-					onItemClick={(item) =>
-						dispatcher(setCurrentThemeAction(item.name))
-					}
-					itemsHeight={(items: Theme[]) => items.length * 28}
-					ref={inputRef}
-				/>
+				<div className="content-filter">
+					<CustomInput
+						placeholder="Search..."
+						variant="borderless"
+						hasClear
+						size="large"
+						onChange={(e: ChangeEvent) => {
+							dispatcher(
+								themeFilterAction(
+									(e.target as HTMLInputElement).value,
+								),
+							)
+						}}
+					/>
+				</div>
+				<div className="content-theme-list">
+					{themes &&
+						filteredThemes.map((theme: Theme) => {
+							return (
+								<ListElement
+									key={theme.name}
+									title={theme.name}
+									active={
+										theme.name === selector.currentTheme
+											? true
+											: false
+									}
+									startContent={
+										theme.name === selector.currentTheme ? (
+											<Check />
+										) : null
+									}
+									endContent={<ThemeBubbles theme={theme} />}
+									onClick={() =>
+										dispatcher(
+											setCurrentThemeAction(theme.name),
+										)
+									}
+									ref={
+										theme.name === selector.currentTheme
+											? activeElement
+											: null
+									}
+								/>
+							)
+						})}
+				</div>
 			</div>
 		</Modal>
 	)
