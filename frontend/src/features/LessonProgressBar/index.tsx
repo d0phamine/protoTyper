@@ -20,7 +20,7 @@ export const LessonProgressBar: FC = () => {
 	return selector.currentLesson ? (
 		<Steps
 			className="lesson-progress-bar"
-            percent={selector.currentLesson.result.percentage}
+			percent={selector.currentLesson.result.percentage}
 			onChange={(value) => {
 				if (selector.currentLesson) {
 					console.log("click works")
@@ -31,7 +31,9 @@ export const LessonProgressBar: FC = () => {
 					)
 				}
 			}}
-			current={(selector.currentStep?.id ?? 1) - 1}
+			current={selector.currentLesson.steps.findIndex(
+				(step) => step.id === selector.currentStep?.id,
+			)}
 			items={selector.currentLesson?.steps.map((step) => ({
 				title: step.name,
 				description: step.description,
