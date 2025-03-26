@@ -28,7 +28,18 @@ export const setCurrentLesson = (
 	)
 }
 
-export const setCurrentStep: CaseReducer<
+export const setCurrentStep = (
+	builder: ActionReducerMapBuilder<ILessonsStore>,
+) => {
+	builder.addMatcher(
+		protoTyperApi.endpoints.getStepById.matchFulfilled,
+		(state, action) => {
+			state.currentStep = action.payload as LessonStep
+		},
+	)
+}
+
+export const setCurrentStepManually: CaseReducer<
 	ILessonsStore,
 	PayloadAction<LessonStep>
 > = (state, action) => {

@@ -29,12 +29,11 @@
 	}
 }
 
-.sub-button.active{
-	.sub-button__title{
+.sub-button.active {
+	.sub-button__title {
 		p {
 			color: var(--main-color);
 		}
-		
 	}
 
 	.sub-button__icon {
@@ -58,3 +57,8 @@
 	}
 }
 
+.sub-button.bold {
+	.sub-button__title p {
+		font-weight: 700;
+	}
+}

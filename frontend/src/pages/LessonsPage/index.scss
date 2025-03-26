@@ -1,33 +1,37 @@
 @use "@/styles/functions.scss" as *;
 
 .lessons-page {
-    display: grid;
-    grid-template-rows: 0.5fr auto 1fr;
+	display: grid;
+	grid-template-rows: 0.5fr auto 1fr;
 
-    &__lesson-info {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap: rem(12);
+	&__lesson-info {
+		display: flex;
+		flex-direction: column;
+		gap: rem(12);
 
-        p {
-            color: var(--sub-color);
-        }
+		p {
+			color: var(--sub-color);
+		}
 
-        .lesson-info-description {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: rem(6);
-        }
+		.lesson-info-description {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: rem(12);
 
-        .lesson-info-progress {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+			p {
+				line-height: 1;
+			}
 
-            .RSPBprogressBar{
-                width: 90%;
-            }
-        }
-    }
+			h4 {
+				line-height: 1;
+			}
+		}
+
+		.lesson-info-progress {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
 }

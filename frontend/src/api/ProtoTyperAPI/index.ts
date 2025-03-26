@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import {
 	AuthResponse,
 	Lesson,
+	LessonStep,
 	User,
 	UserAdmin,
 	UserCredentials,
@@ -29,7 +30,14 @@ export const protoTyperApi = createApi({
 			query: () => "/lessons",
 		}),
 		getLessonById: builder.query<Lesson, number>({
-			query: (id) => "/lessons/" + id,
+			query: (id) => `/lessons/${id}`,
+		}),
+		getStepById: builder.query<
+			LessonStep,
+			{ lessonId: number; stepId: number }
+		>({
+			query: ({ lessonId, stepId }) =>
+				`/lessons/${lessonId}/steps/${stepId}`,
 		}),
 		getUserProfile: builder.query<User, void>({
 			query: () => "/users/profile",
@@ -57,6 +65,8 @@ export const protoTyperApi = createApi({
 export const {
 	useGetLessonsQuery,
 	useGetLessonByIdQuery,
+	useGetStepByIdQuery,
+	useLazyGetStepByIdQuery,
 	useGetUserProfileQuery,
 	useGetUsersAdminQuery,
 	useLoginUserMutation,

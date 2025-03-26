@@ -7,6 +7,7 @@ export interface subButtonProps {
 	icon?: ReactNode | null
 	style?: object
 	customClass?: string
+	bold?: boolean
 	onClick?: () => void
 	setActive?: boolean
 }
@@ -15,7 +16,7 @@ export const SubButton: FC<subButtonProps> = (props) => {
 	const [active, setActive] = useState(false)
 	return (
 		<div
-			className={`sub-button ${props.customClass || ""}${active ? "active" : ""}`}
+			className={`sub-button ${props.customClass || ""}${active ? "active" : ""} ${props.bold ? "bold" : ""}`}
 			style={props.style}
 			onClick={() => {
 				if (props.onClick) props.onClick()
