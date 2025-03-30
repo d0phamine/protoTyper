@@ -4,6 +4,8 @@ import { useToaster } from "@/hooks"
 import { FC } from "react"
 import { useParams } from "react-router-dom"
 
+import { Skeleton } from "antd"
+
 import { useGetLessonByIdQuery } from "@/api"
 
 import { lessonsStoreSelectors } from "@/store/LessonsStore"
@@ -33,16 +35,24 @@ export const LessonsPage: FC = () => {
 		<MainLayout>
 			<div className="lessons-page content-grid full-width">
 				<div className="lessons-page__lesson-info">
-					<div className="lesson-info-description">
-						<h4>{selector.currentLesson?.name}</h4>
-						<SubButton
-							title={`(${selector.currentLesson?.language})`}
-							customClass="p-0"
-							style={{ gap: 0 }}
-							bold
-						/>
-						<p>{selector.currentLesson?.description}</p>
-					</div>
+					{selector.currentLesson ? (
+						<div className="lesson-info-description">
+							<h4>{selector.currentLesson?.name}</h4>
+							<SubButton
+								title={`(${selector.currentLesson?.language})`}
+								customClass="p-0"
+								style={{ gap: 0 }}
+								bold
+							/>
+							<p>{selector.currentLesson?.description}</p>
+						</div>
+					) : (
+						<div className="lesson-info-description">
+							<Skeleton.Input active size="small" />
+							<Skeleton.Input active size="small" />
+							<Skeleton.Input active size="small" block />
+						</div>
+					)}
 					<div className="lesson-info-progress">
 						<LessonProgressBar />
 					</div>

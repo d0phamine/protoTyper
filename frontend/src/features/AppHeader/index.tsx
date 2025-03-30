@@ -67,7 +67,12 @@ export const AppHeader: FC = () => {
 				) : (
 					<div className="gap-row-6">
 						<Skeleton.Input active size="small" />
-						<Skeleton.Avatar active size="small" shape="square"/>
+						<Skeleton.Avatar
+							active
+							size="small"
+							shape="square"
+							style={{ borderRadius: "6px" }}
+						/>
 					</div>
 				)}
 

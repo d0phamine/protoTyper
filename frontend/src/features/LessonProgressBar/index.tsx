@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { Steps } from "antd"
+import { Skeleton, Steps } from "antd"
 
 import {
 	lessonsStoreSelectors,
@@ -39,6 +39,8 @@ export const LessonProgressBar: FC = () => {
 				description: step.description,
 			}))}
 		/>
-	) : null
+	) : (
+		<Skeleton.Button block size="large" active style={{height:"46px"}}/>
+	)
 }
 
