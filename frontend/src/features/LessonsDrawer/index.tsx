@@ -1,10 +1,10 @@
 import { FC } from "react"
-import Skeleton from "react-loading-skeleton"
 import Drawer from "react-modern-drawer"
 import "react-modern-drawer/dist/index.css"
 import { useNavigate } from "react-router-dom"
 
 import { BookOpen } from "@gravity-ui/icons"
+import { Skeleton } from "antd"
 
 import { Lesson } from "@/types/processes"
 
@@ -46,7 +46,13 @@ export const LessonsDrawer: FC = () => {
 					</div>
 					<div className="lessons-drawer-content__body">
 						{isLessonsLoading ? (
-							<Skeleton count={5} height={40} />
+							<div className="gap-column-6">
+								<Skeleton.Button block active size="large"/>
+								<Skeleton.Button block active size="large"/>
+								<Skeleton.Button block active size="large"/>
+								<Skeleton.Button block active size="large"/>
+								<Skeleton.Button block active size="large"/>
+							</div>
 						) : (
 							lessons?.map((lesson: Lesson) => {
 								return (

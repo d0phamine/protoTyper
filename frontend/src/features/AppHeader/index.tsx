@@ -8,6 +8,8 @@ import {
 	Person,
 } from "@gravity-ui/icons"
 
+import { Skeleton } from "antd"
+
 import { useGetUserProfileQuery } from "@/api"
 
 import { authStoreSelectors, logoutThunk } from "@/store/AuthStore"
@@ -39,33 +41,34 @@ export const AppHeader: FC = () => {
 			</div>
 			<div className="app-header__nav-menu">
 				<SubButton
-					customClass="pb-0"
 					icon={<BookOpen />}
 					style={{ gap: 0 }}
 					onClick={() => dispatcher(toggleLessonsDrawerOpenAction())}
 				/>
 			</div>
 			<div className="app-header__service-menu">
-				{selector.isAuth && userProfile ? (
+				{!selector.isAuth ? (
+					<SubButton
+						icon={<Person />}
+						style={{ gap: 0 }}
+						onClick={() => navigate("/auth")}
+					/>
+				) : userProfile ? (
 					<>
 						<UserMiniProfile
-							customClass="pb-0"
 							username={userProfile ? userProfile?.username : ""}
 						/>
 						<SubButton
-							customClass="pb-0"
 							icon={<ArrowRightFromSquare />}
 							style={{ gap: 0 }}
 							onClick={() => dispatcher(logoutThunk())}
 						/>
 					</>
 				) : (
-					<SubButton
-						customClass="pb-0"
-						icon={<Person />}
-						style={{ gap: 0 }}
-						onClick={() => navigate("/auth")}
-					/>
+					<div className="gap-row-6">
+						<Skeleton.Input active size="small" />
+						<Skeleton.Avatar active size="small" shape="square"/>
+					</div>
 				)}
 
 				<LessonsDrawer />

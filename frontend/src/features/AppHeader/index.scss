@@ -16,10 +16,12 @@
 		gap: rem(6);
 		align-items: center;
 		cursor: pointer;
-		padding: 0.25em 0.5em 0.25em 0;
+		padding-right: 0.5em;
+		padding-bottom: 0.15em;
 
 		h2 {
 			line-height: 1;
+			
 		}
 
 		svg {
@@ -41,7 +43,7 @@
 
 	@media only screen and (max-width: calc(1024px + 5rem)) {
 		&__logo h2 {
-			font-size: 1.5rem;
+			font-size: 1.3rem;
 		}
 	}
 

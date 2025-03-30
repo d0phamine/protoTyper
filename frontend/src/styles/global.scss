@@ -105,6 +105,16 @@ body {
 	}
 }
 
+.ant-skeleton.ant-skeleton-active .ant-skeleton-button {
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.12) 25%,
+		var(--sub-color) 37%,
+		rgba(255, 255, 255, 0.12) 63%
+	);
+	background-size: 400% 100%;
+}
+
 .centered-class {
 	display: flex;
 	justify-content: center;
@@ -119,64 +129,6 @@ body {
 	padding-left: rem(4);
 }
 
-.react-loading-skeleton {
-	--base-color: var(--bg-color);
-	--highlight-color: var(--sub-color);
-	--animation-duration: 1.5s;
-	--animation-direction: normal;
-	--pseudo-element-display: block; /* Enable animation */
-
-	background-color: var(--base-color);
-
-	width: 100%;
-	border-radius: 0.25rem;
-	display: inline-flex;
-	line-height: 1;
-
-	position: relative;
-	user-select: none;
-	overflow: hidden;
-}
-
-.react-loading-skeleton::after {
-	content: " ";
-	display: var(--pseudo-element-display);
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 100%;
-	background-repeat: no-repeat;
-	background-image: var(
-		--custom-highlight-background,
-		linear-gradient(
-			90deg,
-			var(--base-color) 0%,
-			var(--highlight-color) 50%,
-			var(--base-color) 100%
-		)
-	);
-	transform: translateX(-100%);
-
-	animation-name: react-loading-skeleton;
-	animation-direction: var(--animation-direction);
-	animation-duration: var(--animation-duration);
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: infinite;
-}
-
-@keyframes react-loading-skeleton {
-	100% {
-		transform: translateX(100%);
-	}
-}
-
-@media (prefers-reduced-motion) {
-	.react-loading-skeleton {
-		--pseudo-element-display: none; /* Disable animation */
-	}
-}
-
 .pb-0 {
 	padding-bottom: 0;
 }
@@ -185,3 +137,13 @@ body {
 	padding: 0;
 }
 
+.gap-row-6 {
+	display: flex;
+	gap: rem(6);
+}
+
+.gap-column-6 {
+	display: flex;
+	flex-direction: column;
+	gap: rem(6);
+}
