@@ -18,6 +18,9 @@ export const LessonProgressBar: FC = () => {
 		currentStepIndex: useAppSelector(
 			lessonsStoreSelectors.currentStepIndex,
 		),
+		currentStepResult: useAppSelector(
+			lessonsStoreSelectors.currentStepResult,
+		),
 	}
 	const dispatch = useAppDispatch()
 
@@ -31,13 +34,13 @@ export const LessonProgressBar: FC = () => {
 		}
 	}, [selector.currentLesson])
 
-	console.log(selector.currentStepIndex, "currStepIndex")
-	console.log(selector.currentStep, "currentStep")
+	// console.log(selector.currentStepIndex, "currStepIndex")
+	// console.log(selector.currentStep, "currentStep")
 
 	return selector.currentLesson ? (
 		<Steps
 			className="lesson-progress-bar"
-			percent={selector.currentLesson.result.percentage}
+			percent={(selector.currentStepResult?.percentage || 0) * 100}
 			onChange={(value) => {
 				if (selector.currentLesson) {
 					dispatch(

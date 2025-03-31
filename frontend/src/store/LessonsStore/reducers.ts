@@ -77,3 +77,22 @@ export const currentStepTextsToDefault: CaseReducer<ILessonsStore> = (
 ) => {
 	state.currentStepText = 0
 }
+
+export const setStepResult: CaseReducer<
+	ILessonsStore,
+	PayloadAction<{ currStepText: number; countOfTexts: number }>
+> = (state, action) => {
+	const percentage = Number(
+		action.payload.currStepText / action.payload.countOfTexts,
+	)
+
+	if (percentage === 1) {
+		state.stepResult = { percentage: percentage, status: "success" }
+	} else {
+		state.stepResult = { percentage: percentage, status: "process" }
+	}
+}
+
+export const stepResultToDefault: CaseReducer<ILessonsStore> = (state) => {
+	state.stepResult = null
+}

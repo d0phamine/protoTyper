@@ -7,20 +7,24 @@ import { RootState } from "@/store/store"
 
 import {
 	currentStepTextsToDefault,
-	goToStep,
 	goToNextStepText,
+	goToStep,
 	setCurrentLesson,
 	setCurrentStep,
 	setCurrentStepManually,
 	setLessons,
+	setStepResult,
+	stepResultToDefault,
 } from "./reducers"
 
 const initialState: ILessonsStore = {
 	lessons: [],
 	currentLesson: null,
+	lessonResult: null,
 	currentStep: null,
 	currentStepText: 0,
 	currentStepIndex: 0,
+	stepResult: null,
 }
 
 export const lessonsStoreSlice = createAppSlice({
@@ -29,6 +33,8 @@ export const lessonsStoreSlice = createAppSlice({
 	reducers: {
 		setCurrentStepManuallyAction: setCurrentStepManually,
 		goToStepAction: goToStep,
+		setStepResultAction: setStepResult,
+		stepResultToDefaultAction: stepResultToDefault,
 		goToNextStepTextAction: goToNextStepText,
 		currentStepTextsToDefaultAction: currentStepTextsToDefault,
 	},
@@ -61,17 +67,25 @@ const currentStepText = createSelector(
 	(state) => state.currentStepText,
 )
 
+const currentStepResult = createSelector(
+	[selectLessonsStore],
+	(state) => state.stepResult,
+)
+
 const { reducer, actions } = lessonsStoreSlice
 export const lessonsStoreSelectors = {
 	currentLesson,
 	currentStep,
 	currentStepIndex,
 	currentStepText,
+	currentStepResult,
 }
 export const {
 	setCurrentStepManuallyAction,
 	goToStepAction,
 	goToNextStepTextAction,
 	currentStepTextsToDefaultAction,
+	setStepResultAction,
+	stepResultToDefaultAction,
 } = actions
 export default reducer

@@ -6,6 +6,8 @@ import {
 	goToNextStepTextAction,
 	goToStepAction,
 	lessonsStoreSelectors,
+	setStepResultAction,
+	stepResultToDefaultAction,
 } from "@/store/LessonsStore"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
@@ -19,12 +21,14 @@ export const MainTextArea: FC = () => {
 		currentStepIndex: useAppSelector(
 			lessonsStoreSelectors.currentStepIndex,
 		),
+		currentStepResult: useAppSelector(
+			lessonsStoreSelectors.currentStepResult,
+		),
 	}
 
 	const dispatch = useAppDispatch()
 
 	const text = selector.currentStep?.texts[selector.currentStepText] || ""
-	console.log("index", selector.currentStepText, text)
 	const words = text.split(/(\s)/)
 
 	const goToNextText = useCallback(() => {
@@ -40,36 +44,55 @@ export const MainTextArea: FC = () => {
 	 * ?This func for logic functionality of MainTextArea
 	 */
 
+	const postStepResult = () => {
+		console.log(selector.currentStepText, "current result post")
+		if (selector.currentStep) {
+			dispatch(
+				setStepResultAction({
+					currStepText: selector.currentStepText + 1,
+					countOfTexts: selector.currentStep.texts.length,
+				}),
+			)
+		}
+	}
+
 	const controlText = () => {
 		if (phase === 2 && selector.currentStep && selector.currentLesson) {
-			console.log(
-				"сравнение",
-				selector.currentStepText,
-				selector.currentStep.texts.length - 1,
-			)
 			if (
 				selector.currentStepText ===
 				selector.currentStep.texts.length - 1
 			) {
 				console.log("step Finished")
-
-				dispatch(
-					goToStepAction({
-						stepIndex: selector.currentStepIndex,
-						steps: selector.currentLesson?.steps,
-						funcType: "next",
-					}),
-				)
-				dispatch(currentStepTextsToDefaultAction())
+				postStepResult()
+				dispatch(stepResultToDefaultAction())
+				if (
+					selector.currentStepIndex ===
+					selector.currentLesson.steps.length - 1
+				) {
+					console.log("lesson Finished")
+				} else {
+					dispatch(
+						goToStepAction({
+							stepIndex: selector.currentStepIndex,
+							steps: selector.currentLesson?.steps,
+							funcType: "next",
+						}),
+					)
+					dispatch(currentStepTextsToDefaultAction())
+				}
 			} else {
 				console.log("go to next text")
 				goToNextText()
+				postStepResult()
 			}
 		}
 	}
 
 	useEffect(() => {
-		controlText()
+		if (phase === 2) {
+			controlText()
+			// console.log(selector.currentStepResult)
+		}
 	}, [phase])
 
 	/**
@@ -96,8 +119,6 @@ export const MainTextArea: FC = () => {
 			insertTyping(key)
 		}
 	}
-
-	console.log("phase", phase)
 
 	const caretRef = useRef<HTMLDivElement>(null)
 	const updateCaretPosition = () => {

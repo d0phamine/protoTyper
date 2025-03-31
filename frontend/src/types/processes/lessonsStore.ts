@@ -1,9 +1,11 @@
 export interface ILessonsStore {
 	lessons: Lesson[] | null
 	currentLesson: Lesson | null
+	lessonResult: LessonResult | null
 	currentStep: LessonStep | null
 	currentStepText: number
 	currentStepIndex: number
+	stepResult: LessonStepResult | null
 }
 
 export interface Lesson {
@@ -13,7 +15,7 @@ export interface Lesson {
 	language: string
 	result: LessonResult
 	steps: LessonStep[]
-	status: "success" | "fail" | "notchecked"
+	status: "success" | "fail" | "notchecked" | "process"
 }
 
 export type LessonStep = {
@@ -25,17 +27,11 @@ export type LessonStep = {
 }
 
 export type LessonResult = {
-	id: number
-	lesson_id: number
-	user_id: number
 	percentage: number
-	status: "success" | "fail" | "notchecked"
+	status: "success" | "fail" | "notchecked" | "process"
 }
 
 export type LessonStepResult = {
-	id: number
-	lesson_step_id: number,
-	user_id: number
 	percentage: number
-	status: "success" | "fail" | "notchecked"
+	status: "success" | "fail" | "notchecked" | "process"
 }
