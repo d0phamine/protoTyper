@@ -1,6 +1,8 @@
 import { FC, useCallback, useEffect, useRef } from "react"
 import useTypingGame from "react-typing-game-hook"
 
+import { Skeleton } from "antd"
+
 import {
 	currentStepTextsToDefaultAction,
 	goToNextStepTextAction,
@@ -44,10 +46,10 @@ export const MainTextArea: FC = () => {
 	 * ?This func for logic functionality of MainTextArea
 	 */
 
-	const postStepResult = () => {
+	const postStepResult = async () => {
 		console.log(selector.currentStepText, "current result post")
 		if (selector.currentStep) {
-			dispatch(
+			await dispatch(
 				setStepResultAction({
 					currStepText: selector.currentStepText + 1,
 					countOfTexts: selector.currentStep.texts.length,
@@ -56,14 +58,14 @@ export const MainTextArea: FC = () => {
 		}
 	}
 
-	const controlText = () => {
+	const controlText = async () => {
 		if (phase === 2 && selector.currentStep && selector.currentLesson) {
 			if (
 				selector.currentStepText ===
 				selector.currentStep.texts.length - 1
 			) {
 				console.log("step Finished")
-				postStepResult()
+				await postStepResult()
 				dispatch(stepResultToDefaultAction())
 				if (
 					selector.currentStepIndex ===
@@ -91,7 +93,6 @@ export const MainTextArea: FC = () => {
 	useEffect(() => {
 		if (phase === 2) {
 			controlText()
-			// console.log(selector.currentStepResult)
 		}
 	}, [phase])
 
@@ -158,7 +159,7 @@ export const MainTextArea: FC = () => {
 	 * ! End of render funcitonality block
 	 */
 
-	return (
+	return selector.currentLesson ? (
 		<div className="main-text-area">
 			<div
 				className="main-text-area__text"
@@ -191,6 +192,10 @@ export const MainTextArea: FC = () => {
 					)
 				})}
 			</div>
+		</div>
+	) : (
+		<div className="main-text-area">
+			<Skeleton.Input block active />
 		</div>
 	)
 }

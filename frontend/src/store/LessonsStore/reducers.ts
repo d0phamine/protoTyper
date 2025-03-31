@@ -8,6 +8,8 @@ import { ILessonsStore, Lesson, LessonStep } from "@/types/processes"
 
 import { protoTyperApi } from "@/api"
 
+import { setStepResultAction } from "./lessonsStoreSlice"
+
 export const setLessons = (builder: ActionReducerMapBuilder<ILessonsStore>) => {
 	builder.addMatcher(
 		protoTyperApi.endpoints.getLessons.matchFulfilled,
@@ -78,19 +80,12 @@ export const currentStepTextsToDefault: CaseReducer<ILessonsStore> = (
 	state.currentStepText = 0
 }
 
-export const setStepResult: CaseReducer<
-	ILessonsStore,
-	PayloadAction<{ currStepText: number; countOfTexts: number }>
-> = (state, action) => {
-	const percentage = Number(
-		action.payload.currStepText / action.payload.countOfTexts,
-	)
-
-	if (percentage === 1) {
-		state.stepResult = { percentage: percentage, status: "success" }
-	} else {
-		state.stepResult = { percentage: percentage, status: "process" }
-	}
+export const setStepResult = (
+	builder: ActionReducerMapBuilder<ILessonsStore>,
+) => {
+	builder.addCase(setStepResultAction.fulfilled, (state, action) => {
+		state.stepResult = action.payload
+	})
 }
 
 export const stepResultToDefault: CaseReducer<ILessonsStore> = (state) => {

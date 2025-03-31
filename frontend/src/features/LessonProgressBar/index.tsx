@@ -25,6 +25,7 @@ export const LessonProgressBar: FC = () => {
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
+		console.log("11111")
 		if (selector.currentLesson) {
 			dispatch(
 				setCurrentStepManuallyAction(
@@ -32,15 +33,15 @@ export const LessonProgressBar: FC = () => {
 				),
 			)
 		}
-	}, [selector.currentLesson])
+	}, [selector.currentLesson, selector.currentStepIndex])
 
 	// console.log(selector.currentStepIndex, "currStepIndex")
-	// console.log(selector.currentStep, "currentStep")
+	console.log(selector.currentStep, "currentStep")
 
 	return selector.currentLesson ? (
 		<Steps
 			className="lesson-progress-bar"
-			percent={(selector.currentStepResult?.percentage || 0) * 100}
+			percent={selector.currentStepResult?.percentage || 0}
 			onChange={(value) => {
 				if (selector.currentLesson) {
 					dispatch(

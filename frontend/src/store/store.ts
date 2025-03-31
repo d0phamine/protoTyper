@@ -5,7 +5,7 @@ import { setupListeners } from "@reduxjs/toolkit/query"
 import { protoTyperApi, themeApi } from "@/api"
 
 import { featureStoreSlice } from "@/store/FeatureStore"
-import { lessonsStoreSlice } from "@/store/LessonsStore"
+import { lessonsStoreSlice, stepResultMiddleware } from "@/store/LessonsStore"
 import { mainConfiguratorSlice } from "@/store/MainConfigurator/"
 import { themeSwitcherSlice } from "@/store/ThemeSwitcher/"
 
@@ -32,6 +32,7 @@ export const makeStore = (preloadedState?: Partial<RootState>) => {
 			getDefaultMiddleware().concat(
 				themeApi.middleware,
 				protoTyperApi.middleware,
+				stepResultMiddleware,
 			),
 	})
 

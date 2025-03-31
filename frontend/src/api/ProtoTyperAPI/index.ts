@@ -4,6 +4,7 @@ import {
 	AuthResponse,
 	Lesson,
 	LessonStep,
+	LessonStepResult,
 	User,
 	UserAdmin,
 	UserCredentials,
@@ -45,6 +46,16 @@ export const protoTyperApi = createApi({
 		getUsersAdmin: builder.query<UserAdmin[], void>({
 			query: () => "/users",
 		}),
+		postStepResult: builder.mutation<
+			void,
+			{ lessonId: number; stepId: number; result: LessonStepResult }
+		>({
+			query: ({ lessonId, stepId, result }) => ({
+				url: `/lessons/${lessonId}/steps/${stepId}/result`,
+				method: "POST",
+				body: result,
+			}),
+		}),
 		registerUser: builder.mutation<AuthResponse, UserCredentials>({
 			query: (userCredentials) => ({
 				url: "auth/registration",
@@ -71,4 +82,5 @@ export const {
 	useGetUsersAdminQuery,
 	useLoginUserMutation,
 	useRegisterUserMutation,
+	usePostStepResultMutation,
 } = protoTyperApi

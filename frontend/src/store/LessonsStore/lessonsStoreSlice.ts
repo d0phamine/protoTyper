@@ -1,6 +1,6 @@
-import { createSelector } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSelector } from "@reduxjs/toolkit"
 
-import { ILessonsStore } from "@/types/processes"
+import { ILessonsStore, LessonStepResult } from "@/types/processes"
 
 import { createAppSlice } from "@/store/createAppSlice"
 import { RootState } from "@/store/store"
@@ -33,17 +33,39 @@ export const lessonsStoreSlice = createAppSlice({
 	reducers: {
 		setCurrentStepManuallyAction: setCurrentStepManually,
 		goToStepAction: goToStep,
-		setStepResultAction: setStepResult,
 		stepResultToDefaultAction: stepResultToDefault,
 		goToNextStepTextAction: goToNextStepText,
 		currentStepTextsToDefaultAction: currentStepTextsToDefault,
 	},
 	extraReducers: (builder) => {
+		setStepResult(builder)
 		setLessons(builder)
 		setCurrentLesson(builder)
 		setCurrentStep(builder)
 	},
 })
+
+export const setStepResultAction = createAsyncThunk<
+	LessonStepResult,
+	{ currStepText: number; countOfTexts: number }
+>(
+	"lessonsStore/setStepResult",
+	async ({
+		currStepText,
+		countOfTexts,
+	}: {
+		currStepText: number
+		countOfTexts: number
+	}) => {
+		const percentage = (currStepText / countOfTexts) * 100
+		const result: LessonStepResult = {
+			percentage,
+			status: percentage === 1 ? "success" : "process",
+		}
+
+		return result // Возвращается в `fulfilled`
+	},
+)
 
 const selectLessonsStore = (state: RootState) => state.lessonsStore
 
@@ -85,7 +107,8 @@ export const {
 	goToStepAction,
 	goToNextStepTextAction,
 	currentStepTextsToDefaultAction,
-	setStepResultAction,
 	stepResultToDefaultAction,
 } = actions
+
+export { setStepResult }
 export default reducer
