@@ -1,17 +1,84 @@
-import { FC, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect, useRef } from "react"
 import useTypingGame from "react-typing-game-hook"
+
+import {
+	currentStepTextsToDefaultAction,
+	goToNextStepTextAction,
+	goToStepAction,
+	lessonsStoreSelectors,
+} from "@/store/LessonsStore"
+import { useAppDispatch, useAppSelector } from "@/store/hooks"
 
 import "./index.scss"
 
 export const MainTextArea: FC = () => {
-	const text =
-		"i'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best"
+	const selector = {
+		currentStep: useAppSelector(lessonsStoreSelectors.currentStep),
+		currentLesson: useAppSelector(lessonsStoreSelectors.currentLesson),
+		currentStepText: useAppSelector(lessonsStoreSelectors.currentStepText),
+		currentStepIndex: useAppSelector(
+			lessonsStoreSelectors.currentStepIndex,
+		),
+	}
 
+	const dispatch = useAppDispatch()
+
+	const text = selector.currentStep?.texts[selector.currentStepText] || ""
+	console.log("index", selector.currentStepText, text)
 	const words = text.split(/(\s)/)
+
+	const goToNextText = useCallback(() => {
+		dispatch(goToNextStepTextAction(selector.currentStep?.texts || []))
+	}, [selector.currentStep?.texts])
+
 	const {
-		states: { charsState, currIndex },
+		states: { charsState, currIndex, phase },
 		actions: { insertTyping, resetTyping, deleteTyping },
 	} = useTypingGame(text)
+
+	/**
+	 * ?This func for logic functionality of MainTextArea
+	 */
+
+	const controlText = () => {
+		if (phase === 2 && selector.currentStep && selector.currentLesson) {
+			console.log(
+				"сравнение",
+				selector.currentStepText,
+				selector.currentStep.texts.length - 1,
+			)
+			if (
+				selector.currentStepText ===
+				selector.currentStep.texts.length - 1
+			) {
+				console.log("step Finished")
+
+				dispatch(
+					goToStepAction({
+						stepIndex: selector.currentStepIndex,
+						steps: selector.currentLesson?.steps,
+						funcType: "next",
+					}),
+				)
+				dispatch(currentStepTextsToDefaultAction())
+			} else {
+				console.log("go to next text")
+				goToNextText()
+			}
+		}
+	}
+
+	useEffect(() => {
+		controlText()
+	}, [phase])
+
+	/**
+	 * ?End of logic functionality block
+	 */
+
+	/**
+	 *  !This funcs for render funcitonality of MainTextArea
+	 */
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
 		e.preventDefault()
@@ -30,31 +97,32 @@ export const MainTextArea: FC = () => {
 		}
 	}
 
+	console.log("phase", phase)
+
 	const caretRef = useRef<HTMLDivElement>(null)
+	const updateCaretPosition = () => {
+		const caret = caretRef.current
+		const initWord = document.querySelector(".text-word")
+		const activeLetter = document.querySelector(".letter.active")
 
-	useEffect(() => {
-		const updateCaretPosition = () => {
-			const caret = caretRef.current
-			const initWord = document.querySelector(".text-word")
-			const activeLetter = document.querySelector(".letter.active")
+		if (caret && activeLetter && currIndex !== -1) {
+			const target = activeLetter as HTMLElement
+			const params = target.getBoundingClientRect()
 
-			if (caret && activeLetter && currIndex !== -1) {
-				const target = activeLetter as HTMLElement
-				const params = target.getBoundingClientRect()
-
-				caret.style.left = `${params.x + params.width}px`
-				caret.style.top = `${params.y}px`
-			}
-
-			if (caret && initWord && currIndex === -1) {
-				const initTarget = initWord as HTMLElement
-				const initParams = initTarget.getBoundingClientRect()
-
-				caret.style.left = `${initParams.x}px`
-				caret.style.top = `${initParams.y}px`
-			}
+			caret.style.left = `${params.x + params.width}px`
+			caret.style.top = `${params.y}px`
 		}
 
+		if (caret && initWord && currIndex === -1) {
+			const initTarget = initWord as HTMLElement
+			const initParams = initTarget.getBoundingClientRect()
+
+			caret.style.left = `${initParams.x}px`
+			caret.style.top = `${initParams.y}px`
+		}
+	}
+
+	useEffect(() => {
 		updateCaretPosition()
 
 		window.addEventListener("resize", updateCaretPosition)
@@ -64,6 +132,10 @@ export const MainTextArea: FC = () => {
 	}, [currIndex])
 
 	let counter = 0
+
+	/**
+	 * ! End of render funcitonality block
+	 */
 
 	return (
 		<div className="main-text-area">

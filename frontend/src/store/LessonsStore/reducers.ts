@@ -45,3 +45,35 @@ export const setCurrentStepManually: CaseReducer<
 > = (state, action) => {
 	state.currentStep = action.payload
 }
+export const goToNextStepText: CaseReducer<
+	ILessonsStore,
+	PayloadAction<string[]>
+> = (state, action) => {
+	if (state.currentStepText < action.payload.length) {
+		state.currentStepText += 1
+	}
+}
+
+export const goToStep: CaseReducer<
+	ILessonsStore,
+	PayloadAction<{
+		stepIndex: number
+		steps: LessonStep[]
+		funcType: "next" | "curr"
+	}>
+> = (state, action) => {
+	if (action.payload.stepIndex < action.payload.steps.length) {
+		if (action.payload.funcType === "next") {
+			state.currentStepIndex += 1
+		}
+		if (action.payload.funcType === "curr") {
+			state.currentStepIndex = action.payload.stepIndex
+		}
+	}
+}
+
+export const currentStepTextsToDefault: CaseReducer<ILessonsStore> = (
+	state,
+) => {
+	state.currentStepText = 0
+}

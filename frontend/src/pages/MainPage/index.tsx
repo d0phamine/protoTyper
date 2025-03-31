@@ -1,4 +1,4 @@
-import { MainConfigurator, MainTextArea } from "@/features"
+import { MainConfigurator } from "@/features"
 
 import { FC } from "react"
 
@@ -11,7 +11,7 @@ export const MainPage: FC = () => {
 		<MainLayout>
 			<div className="main-page content-grid full-width">
 				<MainConfigurator />
-				<MainTextArea />
+				{/* <MainTextArea /> */}
 			</div>
 		</MainLayout>
 	)

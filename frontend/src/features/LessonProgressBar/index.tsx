@@ -1,8 +1,9 @@
-import { FC } from "react"
+import { FC, useEffect } from "react"
 
 import { Skeleton, Steps } from "antd"
 
 import {
+	goToStepAction,
 	lessonsStoreSelectors,
 	setCurrentStepManuallyAction,
 } from "@/store/LessonsStore"
@@ -14,8 +15,24 @@ export const LessonProgressBar: FC = () => {
 	const selector = {
 		currentLesson: useAppSelector(lessonsStoreSelectors.currentLesson),
 		currentStep: useAppSelector(lessonsStoreSelectors.currentStep),
+		currentStepIndex: useAppSelector(
+			lessonsStoreSelectors.currentStepIndex,
+		),
 	}
 	const dispatch = useAppDispatch()
+
+	useEffect(() => {
+		if (selector.currentLesson) {
+			dispatch(
+				setCurrentStepManuallyAction(
+					selector.currentLesson?.steps[selector.currentStepIndex],
+				),
+			)
+		}
+	}, [selector.currentLesson])
+
+	console.log(selector.currentStepIndex, "currStepIndex")
+	console.log(selector.currentStep, "currentStep")
 
 	return selector.currentLesson ? (
 		<Steps
@@ -23,24 +40,28 @@ export const LessonProgressBar: FC = () => {
 			percent={selector.currentLesson.result.percentage}
 			onChange={(value) => {
 				if (selector.currentLesson) {
-					console.log("click works")
 					dispatch(
 						setCurrentStepManuallyAction(
 							selector.currentLesson?.steps[value],
 						),
 					)
+					dispatch(
+						goToStepAction({
+							stepIndex: value,
+							steps: selector.currentLesson.steps,
+							funcType: "curr",
+						}),
+					)
 				}
 			}}
-			current={selector.currentLesson.steps.findIndex(
-				(step) => step.id === selector.currentStep?.id,
-			)}
+			current={selector.currentStepIndex}
 			items={selector.currentLesson?.steps.map((step) => ({
 				title: step.name,
 				description: step.description,
 			}))}
 		/>
 	) : (
-		<Skeleton.Button block size="large" active style={{height:"46px"}}/>
+		<Skeleton.Button block size="large" active style={{ height: "46px" }} />
 	)
 }
 
