@@ -4,7 +4,7 @@ import "react-modern-drawer/dist/index.css"
 import { useNavigate } from "react-router-dom"
 
 import { BookOpen } from "@gravity-ui/icons"
-import { Skeleton } from "antd"
+import { Skeleton, Progress } from "antd"
 
 import { Lesson } from "@/types/processes"
 
@@ -63,6 +63,7 @@ export const LessonsDrawer: FC = () => {
 										onClick={() => {
 											navigate(`/lessons/${lesson.id}`)
 										}}
+										endContent={<Progress type="circle" percent={50} size={20} />}
 									/>
 								)
 							})

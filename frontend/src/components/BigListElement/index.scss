@@ -6,7 +6,7 @@
 	align-items: center;
 	border-radius: rem(4);
 	padding: 4px;
-    transition: 0.125s;
+	transition: 0.125s;
 
 	&__status-bar {
 		width: 4px;
@@ -35,19 +35,22 @@
 		height: rem(24);
 		margin-left: auto;
 		flex-shrink: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 
-.big-list-element.active{
-    .big-list-element__status-bar {
-        background-color: var(--main-color);
-    }
+.big-list-element.active {
+	.big-list-element__status-bar {
+		background-color: var(--main-color);
+	}
 }
 
 .big-list-element:hover {
 	background-color: var(--text-color);
-    cursor: pointer;
-    transition: 0.125s;
+	cursor: pointer;
+	transition: 0.125s;
 
 	.content-header {
 		p {
@@ -55,8 +58,8 @@
 		}
 	}
 
-    .content-description {
-        color: var(--sub-color);
-    }
+	.content-description {
+		color: var(--sub-color);
+	}
 }
 

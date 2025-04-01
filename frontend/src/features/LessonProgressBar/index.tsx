@@ -38,6 +38,16 @@ export const LessonProgressBar: FC = () => {
 	// console.log(selector.currentStepIndex, "currStepIndex")
 	console.log(selector.currentStep, "currentStep")
 
+	const statusMap: Record<
+		"success" | "fail" | "process" | "notchecked",
+		"finish" | "error" | "process" | "wait"
+	> = {
+		success: "finish",
+		fail: "error",
+		process: "process",
+		notchecked: "wait",
+	}
+
 	return selector.currentLesson ? (
 		<Steps
 			className="lesson-progress-bar"

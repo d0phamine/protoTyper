@@ -22,6 +22,23 @@
 		}
 	}
 
+	.ant-steps-item.ant-steps-item-process {
+		.ant-steps-item-title {
+			color: var(--text-color) !important;
+		}
+		.ant-steps-item-description {
+			color: var(--sub-color) !important;
+		}
+		.ant-steps-item-icon {
+			background-color: var(--sub-color);
+			border-color: var(--sub-color);
+
+			.ant-steps-icon {
+				color: var(--text-color) !important;
+			}
+		}
+	}
+
 	.ant-steps-item.ant-steps-item-active {
 		.ant-steps-item-container {
 			.ant-steps-item-icon {
@@ -135,9 +152,9 @@
 				}
 			}
 
-            .ant-steps-item-icon {
-                border-color: var(--sub-alt-color) !important;
-            }
+			.ant-steps-item-icon {
+				border-color: var(--sub-alt-color) !important;
+			}
 		}
 
 		.ant-steps-item-container[role="button"] {
