@@ -21,9 +21,7 @@ export const stepResultMiddleware: Middleware =
 				currentStep &&
 				stepResult
 			) {
-				console.log("Отправляем результат:", stepResult)
-
-				;(store.dispatch as AppStore["dispatch"])(
+				(store.dispatch as AppStore["dispatch"])(
 					protoTyperApi.endpoints.postStepResult.initiate({
 						lessonId: currentLesson.id,
 						stepId: currentStep.id,

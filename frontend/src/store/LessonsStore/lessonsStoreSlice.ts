@@ -110,5 +110,4 @@ export const {
 	stepResultToDefaultAction,
 } = actions
 
-export { setStepResult }
 export default reducer
